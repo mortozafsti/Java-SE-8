@@ -17,5 +17,7 @@ public class TypeConvertion {
         long longvalue = 500;
         int intvalue = (int) longvalue;
         System.out.println("longvalue: "+longvalue+"\n"+"intvalue "+intvalue);
+        
+       
     }
 }
