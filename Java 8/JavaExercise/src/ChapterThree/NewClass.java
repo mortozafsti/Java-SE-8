@@ -14,7 +14,7 @@ public class NewClass {
 
         int number = sc.nextInt();
         int i = 0;
-        for (i=0; i >= number; i++) {
+        for (i = 0; i >= number; i++) {
             if (number % i == 0) {
                 System.out.println("This is Prime");
             } else {
