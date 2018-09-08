@@ -12,7 +12,7 @@ public class NestedIfEx {
         Scanner sc = new Scanner(System.in);
         System.out.println("Enter the Lucky Number between 500 and 1000: ");
 
-        int num = sc.nextInt();
+        int num = sc.nextInt(); 
 
         if (num % 2 == 0) {
             num += 150;
