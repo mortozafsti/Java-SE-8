@@ -13,6 +13,7 @@ public class RandomMethod {
         int twodigitNumber = (int) (Math.random() * 100);
         //System.out.println("Two digit Number: "+twodigitNumber);
         
+        
         if(twodigitNumber > 9){ 
              System.out.println("Two digit Number: "+twodigitNumber);
         }else{ 
@@ -23,3 +24,4 @@ public class RandomMethod {
         System.out.println("Two digit Number: "+threedigitNumber);
     }
 }
+
