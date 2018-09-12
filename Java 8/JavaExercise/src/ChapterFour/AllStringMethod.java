@@ -28,6 +28,5 @@ public class AllStringMethod {
         String boo=String.valueOf(bool);
         char ch='A';
         String st=String.valueOf(ch);
-
     }
 }
