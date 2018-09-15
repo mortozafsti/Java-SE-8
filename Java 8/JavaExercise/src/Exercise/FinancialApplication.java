@@ -14,20 +14,20 @@ public class FinancialApplication {
     }
 
     public float dotenyearsTution() {
-        float tution = 10000;
-        float increase = 0.05f;
+        float TUTION_PER_YEAR = 10000;
+        float INCREASE_PER_YEAR = 0.05f;
         float NUMBERS_OF_YEAR = 10;
-        float tenYearTution = (tution + (tution * increase) * NUMBERS_OF_YEAR);
+        float tenYearTution = (TUTION_PER_YEAR + (TUTION_PER_YEAR * INCREASE_PER_YEAR) * NUMBERS_OF_YEAR);
 
         return tenYearTution;
     }
 
     public float totalCostforFourYears() {
-        float tution = 10000;
-        float increase = 0.05f;
+        float TUTION_PER_YEAR = 10000;
+        float INCREASE_PER_YEAR = 0.05f;
         float NUMBERS_OF_YEAR = 4;
-        float tenYearTution = (tution + (tution * increase) * NUMBERS_OF_YEAR);
+        float fpurYearTution = (TUTION_PER_YEAR + (TUTION_PER_YEAR * INCREASE_PER_YEAR) * NUMBERS_OF_YEAR);
 
-        return tenYearTution;
+        return fpurYearTution;
     }
 }
