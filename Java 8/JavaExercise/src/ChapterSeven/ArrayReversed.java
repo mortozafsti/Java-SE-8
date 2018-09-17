@@ -6,8 +6,8 @@ public class ArrayReversed {
 
     public static void main(String[] args) {
         int[] x = {5, 8, 7, 1, 6, 10, 12, 84};
-       // Arrays.sort(x);
-       
+        // Arrays.sort(x);
+
         int newArray[] = new int[x.length];
 
         int j = 0;
