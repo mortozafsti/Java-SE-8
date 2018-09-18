@@ -49,15 +49,19 @@ public class Animal {
 
     //Animal Onjects Behaviour
     void bite() {
+        System.out.println("Animal can Bite");
     }
 
     void eat() {
+        System.out.println("Animal can eat");
     }
 
     void sleep() {
+        System.out.println("Animal can Sleep");
     }
 
     void run() {
+        System.out.println("Animal can Run");
     }
 
 }
