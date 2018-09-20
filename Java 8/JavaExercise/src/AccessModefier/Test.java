@@ -36,7 +36,5 @@ public class Test {
         for (Student student : stu) {
             System.out.println(student);
         }
-    }
-
-    
+    }    
 }
