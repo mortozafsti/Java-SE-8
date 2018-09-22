@@ -10,6 +10,14 @@ public class Palindom {
         String[] srrs = {"mom","abc","madam","wow","mim","eye","bye"};
         System.out.println(countPaliandom(srrs));
         
+        String s1 = "mom";
+        String s2 = "Mom";
+        if (s1.equalsIgnoreCase(s2)) {
+            System.out.println("True");
+        }else{ 
+            System.out.println("False");
+        }
+        
     }
 
     public static boolean isPalindom(String s) {
