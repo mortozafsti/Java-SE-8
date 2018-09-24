@@ -8,7 +8,7 @@ public class ArraySorting {
         int x[] = {8, 9, 4, 1, 6, 7};
 
         //Sort this Array
-        Arrays.sort(x, 2, 4);
+        Arrays.sort(x, 1, 5);
 
         //Print this Array call by display Method thats method stay into another class
         ArrayAsMethodAfgument.displayArray(x);
