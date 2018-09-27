@@ -7,6 +7,7 @@ import java.util.Scanner;
 public class OneDFromScanner {
 
     public static void main(String[] args) {
+        
         Scanner sc = new Scanner(System.in);
 
         int arraySixe = sc.nextInt();
@@ -20,3 +21,4 @@ public class OneDFromScanner {
         System.out.println(Arrays.toString(arr));
     }
 }
+
