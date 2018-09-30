@@ -1,0 +1,17 @@
+1.What is Polymorphism?
+Ans:-Polymorphism enables the same method to behave differently on different class.
+2.What is package?
+Ans:-A package in java is a encapsulation machanisom that can be used to group related class,interface and subclass.
+	Advantage:
+	Package name can be use to identify our class.
+	it helps us to about naming conflict.
+	It protect our class amd methods.
+Static keyword:
+	Static variable are access only static method.
+	static method are invoked only static method.
+	static method does not have "this".
+	static method can not be overridden by non static method.
+What is Constructor?
+Ans:- If a method in a class have the same name in that class and must not return a value then
+we can consider the special method as a constructor.
+The primary purpose of a constructor is initializing  the instant value 
