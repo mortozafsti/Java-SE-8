@@ -8,7 +8,11 @@ public class FactorialN {
     public static void main(String[] args) {
         
         getFactorial(5);
-        getFactorials(5);
+        //getFactorials(5);
+        Scanner sc = new Scanner(System.in);
+        System.out.println("Enter the umber: ");
+        int dd = sc.nextInt();
+        getFactorials(dd);
         
         /*
         Scanner sc = new Scanner(System.in);

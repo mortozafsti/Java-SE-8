@@ -9,7 +9,7 @@ public class ArrayReversed {
         // Arrays.sort(x);
 
         int newArray[] = new int[x.length];
-
+        
         int j = 0;
         for (int i = x.length - 1; i >= 0; i--) {
             newArray[j] = x[i];
