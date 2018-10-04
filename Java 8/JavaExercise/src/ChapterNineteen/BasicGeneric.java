@@ -12,6 +12,8 @@ public class BasicGeneric {
         list.add(12);
         list.add("MAhabub");
        // list.forEach(System.out::println);//it is Lambda Expression
+        System.out.println(list.contains(12));
+        list.forEach(System.out::println);
         for (Object object : list) {
             System.out.println(object);
         }
