@@ -11,7 +11,7 @@ public class BasicGeneric {
         list.add(new String ("Abc"));
         list.add(12);
         list.add("MAhabub");
-       // list.forEach(System.out::println);//it is Lambda Expression
+        list.forEach(System.out::println);//it is Lambda Expression
         System.out.println(list.contains(12));
         list.forEach(System.out::println);
         for (Object object : list) {
@@ -21,6 +21,9 @@ public class BasicGeneric {
         
         List<Integer> lists = new ArrayList<>();
         lists.add(1000);
+        
+    }
+    public void makeSum(Object e){ 
         
     }
 }
