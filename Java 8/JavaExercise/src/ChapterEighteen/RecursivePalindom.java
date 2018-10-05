@@ -5,6 +5,7 @@ public class RecursivePalindom {
     public static void main(String[] args) {
         System.out.println("Is moon a Palindom "+isPalindom("moon"));
         System.out.println("Is moon a Palindom "+isPalindom("noon"));
+        System.out.println("Is abcba a Palindom "+isPalindom("abcba"));
         
     }
     public static boolean isPalindom(String s){ 
@@ -16,7 +17,7 @@ public class RecursivePalindom {
         }else if(s.charAt(low) != s.charAt(high)){ 
             return false;
         }else{ 
-            return isPalindom(s, low + 1, high - 1);
+            return isPalindom(s, low + 1, high -1);
         }
     }
 }
