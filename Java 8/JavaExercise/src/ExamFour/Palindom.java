@@ -5,6 +5,7 @@ public class Palindom {
     public static void main(String[] args) {
         String[] arr = { "mom","wow","bye","madam","hai"};
         System.out.println(isPalindom(arr[2]));
+        System.out.println(isPalindomCunt(arr));
         
     }
     public static boolean isPalindom(String n){
@@ -16,5 +17,15 @@ public class Palindom {
             return true;
         }
         return status;
+    }
+    public static int isPalindomCunt(String[] s){
+        
+        int counter = 0;
+        for (int i = 0; i <s.length; i++) {
+            if (isPalindom(s[i])) {
+                counter++;
+            }
+        }
+        return counter;
     }
 }
