@@ -8,7 +8,7 @@ public class NewClass {
 
     public static void main(String[] args) throws IOException {
         try (
-                FileOutputStream fileOut = new FileOutputStream("mortoza.txt");) {
+                FileOutputStream fileOut = new FileOutputStream("gm.txt");) {
             for (int i = 1; i <= 10; i++) {
                 fileOut.write(i);
                 System.out.println(i);
