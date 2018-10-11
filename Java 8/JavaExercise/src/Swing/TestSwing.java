@@ -213,8 +213,12 @@ public class TestSwing extends javax.swing.JFrame {
     }//GEN-LAST:event_resetActionPerformed
 
     private void submitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_submitActionPerformed
-       String name = textName.getText();      
+       String name = textName.getText();  
+       String age = textAge.getText();  
+       
+       
        textDisplay.setText(name);
+       textDisplay.setText(age);
      
        
        
