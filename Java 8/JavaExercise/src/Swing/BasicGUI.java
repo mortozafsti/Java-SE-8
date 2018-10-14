@@ -7,8 +7,11 @@ package Swing;
 
 import java.io.BufferedWriter;
 import java.io.File;
+import java.io.FileInputStream;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.io.InputStream;
+import java.util.Scanner;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JCheckBox;
@@ -30,7 +33,6 @@ public class BasicGUI extends javax.swing.JFrame {
     File dir;
     DefaultTableModel model;
     File file = null;
-    
 
     /**
      * Creates new form BasicGUI
@@ -44,7 +46,7 @@ public class BasicGUI extends javax.swing.JFrame {
         model.addColumn("Country");
         model.addColumn("Gender");
         model.addColumn("Degree");
-        
+
     }
 
     /**
@@ -357,42 +359,43 @@ public class BasicGUI extends javax.swing.JFrame {
     }//GEN-LAST:event_txtAddActionPerformed
 
     private void btnTAbleActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTAbleActionPerformed
-        // TODO add your handling code here:
+        disInTabl();
     }//GEN-LAST:event_btnTAbleActionPerformed
 
     private void btntxtAreaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btntxtAreaActionPerformed
-        // TODO add your handling code here:
+        disTArea();
     }//GEN-LAST:event_btntxtAreaActionPerformed
 
     private void btnClearActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnClearActionPerformed
-        // TODO add your handling code here:
+
+        clear();
     }//GEN-LAST:event_btnClearActionPerformed
 
     private void btnExitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnExitActionPerformed
-        
+
         System.exit(0);
-        
+
     }//GEN-LAST:event_btnExitActionPerformed
 
     private void btnSaveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSaveActionPerformed
-        
+
         getAllRecord();
         if (txtName.getText().isEmpty()) {
             JOptionPane.showMessageDialog(rootPane, "Please Enter Name");
-            txtName.requestFocus();            
-        } else {            
+            txtName.requestFocus();
+        } else {
             if (cmbCountry.getSelectedIndex() == 0) {
                 JOptionPane.showMessageDialog(rootPane, "Please Enter the Country");
                 cmbCountry.requestFocus();
-            } else {                
-                 fc = new JFileChooser(dir);
+            } else {
+                fc = new JFileChooser(dir);
                 FileNameExtensionFilter filter;
                 filter = new FileNameExtensionFilter("*.txt", new String[]{"txt"});
                 fc.addChoosableFileFilter(filter);
                 int option = fc.showSaveDialog(this);
                 if (option == JFileChooser.APPROVE_OPTION) {
                     dir = fc.getCurrentDirectory();
-                    model.addRow(new Object[]{fn,add,country,gend,degree});
+                    model.addRow(new Object[]{fn, add, country, gend, degree});
                     file = fc.getSelectedFile();
                     try {
                         writeAll();
@@ -404,14 +407,14 @@ public class BasicGUI extends javax.swing.JFrame {
             }
         }
     }//GEN-LAST:event_btnSaveActionPerformed
-    private void getAllRecord() {        
-        
+    private void getAllRecord() {
+
         fn = txtName.getText();
         add = txtAdd.getText();
         country = cmbCountry.getSelectedItem().toString();
         if (rMale.isSelected()) {
             gend = "Male";
-        } else {            
+        } else {
             gend = "Female";
         }
         for (int i = 0; i < pnlDegree.getComponentCount(); i++) {
@@ -422,30 +425,128 @@ public class BasicGUI extends javax.swing.JFrame {
             }
         }
     }
-    private void writeAll() throws IOException{ 
+
+    private void writeAll() throws IOException {
         BufferedWriter buf = null;
         try {
-            buf = new BufferedWriter(new FileWriter(file+getExtentation(),true));
-            //buf.write(fn);
-            buf.write(fn+","+add+","+country+","+gend+","+degree);
+            buf = new BufferedWriter(new FileWriter(file + getExtentation(), true));
+            buf.write(fn + "," + add + "," + country + "," + gend + "," + degree);
             buf.newLine();
             JOptionPane.showMessageDialog(rootPane, "Data Saved");
         } catch (Exception e) {
             e.printStackTrace();
-        }
-        finally{ 
+        } finally {
             if (buf != null) {
                 buf.close();
             }
         }
     }
-    private String getExtentation(){ 
+
+    private String getExtentation() {
         String ext = "";
         String extentation = fc.getFileFilter().getDescription();
         if (extentation.equals("*.txt")) {
-            ext= "*txt";
+            ext = ".txt";
         }
-        return extentation;
+        return ext;
+    }
+
+    private void disTArea() {
+        FileInputStream fobj = null;
+        fc = new JFileChooser(dir);
+        int option = fc.showOpenDialog(this);
+        if (option == JFileChooser.APPROVE_OPTION) {
+            file = fc.getSelectedFile();
+            dir = fc.getCurrentDirectory();
+            try {
+                String str = "";
+                fobj = new FileInputStream(file);
+                int len = (int) file.length();
+                for (int i = 0; i < len; i++) {
+                    char str2 = 0;
+                    try {
+                        str2 = (char) fobj.read();
+                        if (str2 == ',') {
+                            str2 = '\t';
+                        }
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
+                    str = str + str2;
+                }
+                showStudent.setText(str);
+
+            } catch (Exception e) {
+                e.printStackTrace();
+            } finally {
+                try {
+                    if (fobj != null) {
+                        fobj.close();
+                    }
+                } catch (Exception e) {
+                }
+            }
+        }
+    }
+
+    private void disInTabl() {
+        InputStream is = null;
+        fc = new JFileChooser(dir);
+        int option = fc.showOpenDialog(this);
+        if (option == JFileChooser.APPROVE_OPTION) {
+            file = fc.getSelectedFile();
+            dir = fc.getCurrentDirectory();
+            try {
+                File f = file;
+                is = new FileInputStream(f);
+                Scanner scan = new Scanner(is);
+                String[] arr;
+                while (scan.hasNextLine()) {
+                    String line = scan.nextLine();
+                    if (line.indexOf(",") > 1) {
+                        arr = line.split(",");
+                    } else {
+                        arr = line.split("\n");
+                    }
+                    Object[] data = new Object[arr.length];
+                    for (int i = 0; i < data.length; i++) {
+                        data[i] = arr[i];
+                    }
+                    model.addRow(data);
+                }
+            } catch (Exception e) {
+                e.printStackTrace();
+            } finally {
+                try {
+                    if (is != null) {
+                        is.close();
+                    }
+                } catch (Exception e) {
+                }
+            }
+        }
+
+    }
+
+    private void clear() {
+        txtName.setText("");
+        txtAdd.setText("");
+        cmbCountry.setSelectedIndex(0);
+        degree = "";
+        gender.clearSelection();
+        for (int i = 0; i < pnlDegree.getComponentCount(); i++) {
+            JCheckBox checkBox = (JCheckBox) pnlDegree.getComponent(i);
+            if (checkBox.isSelected()) {
+                checkBox.setSelected(false);
+            }
+        }
+        if (tblStudent.getRowCount() > 0) {
+            for (int i = tblStudent.getRowCount() - 1; i > -1; i--) {
+                model.removeRow(i);
+            }
+        }
+        showStudent.setText("");
+
     }
 
     /**
