@@ -1,6 +1,6 @@
 package ChapterThirty;
 
-public class TaskThreadDemo {
+public class TaskThreadDemo{
 
     public static void main(String[] args) {
 
@@ -29,7 +29,7 @@ class printChar implements Runnable {
     }
 
     @Override
-   synchronized public void run() {
+    public void run() {
         System.out.println(charPrint);
     }
 
@@ -44,12 +44,13 @@ class printChar implements Runnable {
     }
 
     @Override
-   synchronized public void run() {
+    public void run() {
         for (int i = 1; i <= lastNum; i++) {
-            if (i == 30) {
-                break;
-            }
+//            if (i == 30) {
+//                break;
+//            }
             System.out.println(" " + i);
+            Thread.yield();
         }
     }
 
