@@ -17,7 +17,7 @@ public class ColorList {
         System.out.println("\nFont Available in this Possition: ");
         int count = 0;
         for (String fontname : fontnames) {
-            System.out.printf("-30s"+fontname);
+            System.out.print(fontname);
             if (++count % 3  ==0) {
                 System.out.println();
             }
