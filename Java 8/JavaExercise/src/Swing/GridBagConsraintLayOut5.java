@@ -29,8 +29,7 @@ public class GridBagConsraintLayOut5 {
         constraint.ipadx = 30;
         constraint.ipady = 10;
         addButton("Press", constraint, gridBag);
-        
-        
+               
         
         constraint.weightx = 5.0;
         constraint.fill = constraint.BOTH;
@@ -58,8 +57,6 @@ public class GridBagConsraintLayOut5 {
         JButton button = new JButton(label);
         button.setBorder(edge);
         layout.setConstraints(button, constraints);
-        awindow.getContentPane().add(button);
-         
+        awindow.getContentPane().add(button);    
     }
-  
 }
