@@ -5,6 +5,15 @@
  */
 package EvidenceSwing;
 
+import java.util.ArrayList;
+import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
+
 /**
  *
  * @author Cf-37
@@ -33,11 +42,11 @@ public class StudentsForm extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
         jPanel3 = new javax.swing.JPanel();
         jLabel3 = new javax.swing.JLabel();
-        jTextField1 = new javax.swing.JTextField();
+        txtName = new javax.swing.JTextField();
         jLabel2 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
-        jTextField2 = new javax.swing.JTextField();
-        jTextField3 = new javax.swing.JTextField();
+        txtEmail = new javax.swing.JTextField();
+        txtAge = new javax.swing.JTextField();
         jLabel5 = new javax.swing.JLabel();
         rdMale = new javax.swing.JRadioButton();
         rdFemale = new javax.swing.JRadioButton();
@@ -56,6 +65,7 @@ public class StudentsForm extends javax.swing.JFrame {
         btnExit = new javax.swing.JButton();
         btnClearTable = new javax.swing.JButton();
         btnReadFromFile = new javax.swing.JButton();
+        lblMsg = new javax.swing.JLabel();
         jPanel4 = new javax.swing.JPanel();
         jScrollPane3 = new javax.swing.JScrollPane();
         tblDisplay = new javax.swing.JTable();
@@ -103,9 +113,9 @@ public class StudentsForm extends javax.swing.JFrame {
         jLabel3.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel3.setText("Name");
 
-        jTextField1.addActionListener(new java.awt.event.ActionListener() {
+        txtName.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField1ActionPerformed(evt);
+                txtNameActionPerformed(evt);
             }
         });
 
@@ -115,10 +125,13 @@ public class StudentsForm extends javax.swing.JFrame {
         jLabel4.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel4.setText("Age");
 
+        txtAge.setText("0");
+
         jLabel5.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel5.setText("Gender");
 
         buttonGroup1.add(rdMale);
+        rdMale.setSelected(true);
         rdMale.setText("Male");
 
         buttonGroup1.add(rdFemale);
@@ -152,6 +165,11 @@ public class StudentsForm extends javax.swing.JFrame {
         jScrollPane2.setViewportView(txtNote);
 
         btnWriteTableToFile.setText("Add to Table and Write To File");
+        btnWriteTableToFile.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnWriteTableToFileActionPerformed(evt);
+            }
+        });
 
         btnClear.setText("Clear");
 
@@ -198,15 +216,16 @@ public class StudentsForm extends javax.swing.JFrame {
                             .addComponent(ckbCodding)
                             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                             .addComponent(ckbWritting))
-                        .addComponent(jTextField1)
-                        .addComponent(jTextField2)
-                        .addComponent(jTextField3)
+                        .addComponent(txtName)
+                        .addComponent(txtEmail)
+                        .addComponent(txtAge)
                         .addGroup(jPanel3Layout.createSequentialGroup()
                             .addComponent(rdMale)
                             .addGap(10, 10, 10)
                             .addComponent(rdFemale))
                         .addComponent(cmbRound, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 438, Short.MAX_VALUE)))
+                        .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 438, Short.MAX_VALUE))
+                    .addComponent(lblMsg, javax.swing.GroupLayout.PREFERRED_SIZE, 396, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(35, Short.MAX_VALUE))
         );
         jPanel3Layout.setVerticalGroup(
@@ -215,15 +234,15 @@ public class StudentsForm extends javax.swing.JFrame {
                 .addContainerGap()
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel3)
-                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(txtName, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2)
-                    .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(txtEmail, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel4)
-                    .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(txtAge, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel5)
@@ -246,7 +265,9 @@ public class StudentsForm extends javax.swing.JFrame {
                     .addGroup(jPanel3Layout.createSequentialGroup()
                         .addGap(7, 7, 7)
                         .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 79, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(66, 66, 66)
+                .addGap(19, 19, 19)
+                .addComponent(lblMsg, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnWriteTableToFile)
                     .addComponent(btnClear)
@@ -261,16 +282,13 @@ public class StudentsForm extends javax.swing.JFrame {
 
         tblDisplay.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
+
             },
             new String [] {
-                "Title 1", "Title 2", "Title 3", "Title 4"
+                "Name", "Email", "Age", "Gender", "Hobby", "Round", "Note"
             }
         ));
-        tblDisplay.setCellSelectionEnabled(true);
+        tblDisplay.setColumnSelectionAllowed(false);
         tblDisplay.setEditingColumn(4);
         tblDisplay.setRowMargin(0);
         tblDisplay.addAncestorListener(new javax.swing.event.AncestorListener() {
@@ -331,9 +349,9 @@ public class StudentsForm extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jTextField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField1ActionPerformed
+    private void txtNameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtNameActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField1ActionPerformed
+    }//GEN-LAST:event_txtNameActionPerformed
 
     private void cmbRoundActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmbRoundActionPerformed
         // TODO add your handling code here:
@@ -346,6 +364,83 @@ public class StudentsForm extends javax.swing.JFrame {
     private void tblDisplayAncestorAdded(javax.swing.event.AncestorEvent evt) {//GEN-FIRST:event_tblDisplayAncestorAdded
         // TODO add your handling code here:
     }//GEN-LAST:event_tblDisplayAncestorAdded
+    public boolean checkEmailvalidity(String email) {
+        if (null != email) {
+            String regex = "^([_a-zA-Z0-9-]+(\\.[_a-zA-Z0-9-]+)*@[a-zA-Z0-9-]+(\\.[a-zA-Z0-9-]+)*(\\.[a-zA-Z]{1,6}))?$";
+            Pattern pattern = Pattern.compile(regex);
+            Matcher matcher = pattern.matcher(email);
+            if (!matcher.matches()) {
+                return false;
+            }
+            return true;
+        }
+        return false;
+    }
+    private void btnWriteTableToFileActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnWriteTableToFileActionPerformed
+        
+        String name="",email="",age="0",gender="",hobby="",round="",note="";
+        if (txtName.getText().length() < 1) {
+            JOptionPane.showMessageDialog(null, "Enter Your Name");
+        }else if(!checkEmailvalidity(txtEmail.getText()) || txtEmail.getText().length() < 1) {
+            JOptionPane.showMessageDialog(null, "Enter Your Email");
+        }else if(Integer.parseInt(txtAge.getText()) < 18 || Integer.parseInt(txtAge.getText()) > 70) {
+            JOptionPane.showMessageDialog(null, "Enter Your Age");
+        }else if(buttonGroup1.getSelection().isSelected() == false) {
+            JOptionPane.showMessageDialog(null, "Enter Your Gender");
+        }else if(!ckbCodding.isSelected() && !ckbReading.isSelected() && !ckbWritting.isSelected()) {
+            JOptionPane.showMessageDialog(null, "Enter Your Hobby");
+        }else if(cmbRound.getItemAt(cmbRound.getSelectedIndex()) == "-Select the Round-") {
+            JOptionPane.showMessageDialog(null, "Enter Your Round");
+        }else if(txtNote.getText().length() < 5) {
+            JOptionPane.showMessageDialog(null, "Enter At Least 5 Character");
+        }else{ 
+           name = txtName.getText();
+           email = txtEmail.getText();
+           age = txtAge.getText();
+           
+            if (rdMale.isSelected()) {
+                gender = rdMale.getText();
+            }
+            if (rdFemale.isSelected()) {
+                gender = rdFemale.getText();
+            }
+            if (ckbCodding.isSelected()) {
+                hobby += ckbCodding.getText() +" ";
+            }
+            if (ckbReading.isSelected()) {
+                hobby += ckbReading.getText() +" ";
+            }
+            if (ckbWritting.isSelected()) {
+                hobby += ckbWritting.getText() +" ";
+            }
+            round = cmbRound.getItemAt(cmbRound.getSelectedIndex());
+            note = txtNote.getText();
+            
+            Student student = new Student(name, email, age, gender, hobby, round, note);
+            List<Student> students = new ArrayList<>();
+            students.add(student);
+            
+            DefaultTableModel model = (DefaultTableModel) tblDisplay.getModel();
+            Object[] row = new Object[7];
+            for (int i = 0; i < students.size(); i++) {
+                row[0] = students.get(i).getName();
+                row[1] = students.get(i).getName();
+                row[2] = students.get(i).getName();
+                row[3] = students.get(i).getName();
+                row[4] = students.get(i).getName();
+                row[5] = students.get(i).getName();
+                row[6] = students.get(i).getName();
+                model.addRow(row);
+                try {
+                    Utils.writeTofile("student", students);
+                } catch (Exception e) {
+                    Logger.getLogger(StudentsForm.class.getName()).log(Level.SEVERE, null,e);
+                }
+            }
+            lblMsg.setText("Successfully Added into Table and Write to File");
+            
+        }                       
+    }//GEN-LAST:event_btnWriteTableToFileActionPerformed
 
     /**
      * @param args the command line arguments
@@ -408,12 +503,13 @@ public class StudentsForm extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
-    private javax.swing.JTextField jTextField1;
-    private javax.swing.JTextField jTextField2;
-    private javax.swing.JTextField jTextField3;
+    private javax.swing.JLabel lblMsg;
     private javax.swing.JRadioButton rdFemale;
     private javax.swing.JRadioButton rdMale;
     private javax.swing.JTable tblDisplay;
+    private javax.swing.JTextField txtAge;
+    private javax.swing.JTextField txtEmail;
+    private javax.swing.JTextField txtName;
     private javax.swing.JTextArea txtNote;
     // End of variables declaration//GEN-END:variables
 }

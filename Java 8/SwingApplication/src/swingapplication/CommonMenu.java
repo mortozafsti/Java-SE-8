@@ -4,10 +4,13 @@ import View.New;
 import View.Open;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.InputEvent;
+import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 import javax.swing.JMenu;
 import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
+import javax.swing.KeyStroke;
 
 public class CommonMenu {
 
@@ -32,8 +35,10 @@ public class CommonMenu {
         jmenubar.add(help);
         JMenu about = new JMenu("About");
         jmenubar.add(about);
-
+        
         JMenuItem item1 = new JMenuItem("New");
+        item1.setMnemonic('N');
+        item1.setAccelerator(KeyStroke.getKeyStroke('N',InputEvent.CTRL_DOWN_MASK));
         item1.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -42,6 +47,11 @@ public class CommonMenu {
             }
         });
         JMenuItem item2 = new JMenuItem("Open");
+        Object obj = new Object();
+        item2.setIcon(new ImageIcon(obj.getClass().getResource("/View/coding.png")));
+        
+        item2.setMnemonic('O');
+        item2.setAccelerator(KeyStroke.getKeyStroke('O',InputEvent.CTRL_DOWN_MASK));
         item2.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -57,7 +67,7 @@ public class CommonMenu {
                 System.exit(0);
             }
         });
-
+        JMenuItem item4 = new JMenuItem("Ecit");
         file.add(item1);
         file.add(item2);
         file.add(item3);
