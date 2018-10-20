@@ -1,14 +1,11 @@
 package dao;
 
+import domin.Employee;
 import java.util.List;
 
 public interface CommonDao {
 
     List<?> getList();
 
-    void insert();
-
-    void update();
-
-    void delete();
+    void insert(Employee obj);
 }

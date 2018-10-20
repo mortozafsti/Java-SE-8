@@ -36,25 +36,18 @@ public class EmployeeService implements CommonDao{
     }
 
     @Override
-    public void insert() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    @Override
-    public void update() {
+    public void insert(Employee obj) {
         try {
-            PreparedStatement ps = conn.prepareStatement("update employees set first_name='Kalaaaam' where employee_id=100");
-            int list = ps.executeUpdate();
-            System.out.println(list+" Data Updatede");
+            PreparedStatement ps = conn.prepareStatement("insert into employees(id,name)values(?,?)");
+            ps.setInt(1, obj.getEmployeeID());
+            ps.setString(2, obj.getFirstName());
+            ps.executeUpdate();
+            System.out.println("Inserted Successfuly");
         } catch (Exception e) {
             e.printStackTrace();
         }
-        
     }
 
-    @Override
-    public void delete() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
+    
     
 }

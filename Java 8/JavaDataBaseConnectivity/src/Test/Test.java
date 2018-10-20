@@ -11,11 +11,18 @@ public class Test {
     public static void main(String[] args) {
         
         CommonDao daoCom = new EmployeeService();
-        List<Employee> list =  (List<Employee>) daoCom.getList();
-                
-        daoCom.update();
-        for (Employee e : list) {
-            System.out.println(e.getEmployeeID()+" "+e.getFirstName());
-        }
+        
+        Employee employee = new Employee();
+        employee.setEmployeeID(207);
+        employee.setFirstName("Milton");
+        
+        daoCom.insert(employee);
+        
+        
+//        List<Employee> list =  (List<Employee>) daoCom.getList();
+//                       
+//        for (Employee e : list) {
+//            System.out.println(e.getEmployeeID()+" "+e.getFirstName());
+//        }
     }
 }
