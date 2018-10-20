@@ -44,7 +44,7 @@ public class EmployeeService implements CommonDao{
             ps.executeUpdate();
             System.out.println("Inserted Successfuly");
         } catch (Exception e) {
-            e.printStackTrace();
+            Logger.getLogger(EmployeeService.class.getName()).log(Level.SEVERE, null,e);
         }
     }
 

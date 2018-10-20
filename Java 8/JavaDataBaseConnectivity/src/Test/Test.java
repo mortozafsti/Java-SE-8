@@ -14,15 +14,14 @@ public class Test {
         
         Employee employee = new Employee();
         employee.setEmployeeID(207);
-        employee.setFirstName("Milton");
-        
+        employee.setFirstName("Milton");       
         daoCom.insert(employee);
         
         
-//        List<Employee> list =  (List<Employee>) daoCom.getList();
-//                       
-//        for (Employee e : list) {
-//            System.out.println(e.getEmployeeID()+" "+e.getFirstName());
-//        }
+        List<Employee> list =  (List<Employee>) daoCom.getList();
+                       
+        for (Employee e : list) {
+            System.out.println(e.getEmployeeID()+" "+e.getFirstName());
+        }
     }
 }
