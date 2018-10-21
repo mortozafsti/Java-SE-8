@@ -2,6 +2,7 @@
 package service;
 
 import connection.DbConnection;
+import dao.StudentDao;
 import domain.Student;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -13,7 +14,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 
-public class StudentDaoImple implements dao.StudentDao{
+public class StudentDaoImple implements StudentDao{
     
     Connection conn = DbConnection.getConnection("xe", "hr", "hr");
 
