@@ -64,8 +64,18 @@ public class Studentview extends javax.swing.JFrame {
         });
 
         btnUpdate.setText("Update");
+        btnUpdate.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnUpdateActionPerformed(evt);
+            }
+        });
 
         btnDelete.setText("Delete");
+        btnDelete.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnDeleteActionPerformed(evt);
+            }
+        });
 
         btnClear.setText("Clear");
         btnClear.addActionListener(new java.awt.event.ActionListener() {
@@ -170,6 +180,38 @@ public class Studentview extends javax.swing.JFrame {
         displayDataInTable();
         
     }//GEN-LAST:event_btnInsertActionPerformed
+
+    private void btnUpdateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUpdateActionPerformed
+        // TODO add your handling code here:
+        Student student = new Student();
+        student.setId(Integer.parseInt(txtId.getText()));
+        student.setName(txtName.getText());
+        
+        StudentDao obj = new StudentDaoImple();
+        obj.update(student);
+        lblDisplay.setText("Updated Successfully......");
+        
+        DefaultTableModel model = (DefaultTableModel) tblDisplay.getModel();
+        model.setRowCount(0);
+        
+        displayDataInTable();
+    }//GEN-LAST:event_btnUpdateActionPerformed
+
+    private void btnDeleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDeleteActionPerformed
+        // TODO add your handling code here:
+        Student student = new Student();
+        student.setId(Integer.parseInt(txtId.getText()));
+        //student.setName(txtName.getText());
+        
+        StudentDao obj = new StudentDaoImple();
+        obj.delete(student);
+        lblDisplay.setText("Deleted Successfully......");
+        
+        DefaultTableModel model = (DefaultTableModel) tblDisplay.getModel();
+        model.setRowCount(0);
+        
+        displayDataInTable();
+    }//GEN-LAST:event_btnDeleteActionPerformed
 
     public void displayDataInTable(){ 
         StudentDao obj = new StudentDaoImple();
