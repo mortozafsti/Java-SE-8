@@ -47,6 +47,18 @@ public class EmployeeService implements CommonDao{
             Logger.getLogger(EmployeeService.class.getName()).log(Level.SEVERE, null,e);
         }
     }
+    @Override
+    public void create(Employee obja) {
+        try {
+            PreparedStatement ps = conn.prepareStatement("create table emp(id number(3),name varchar2(8))");
+//            ps.setInt(1, obj.getEmployeeID());
+//            ps.setString(2, obj.getFirstName());
+            ps.executeUpdate();
+            System.out.println("created Successfuly");
+        } catch (Exception e) {
+            Logger.getLogger(EmployeeService.class.getName()).log(Level.SEVERE, null,e);
+        }
+    }
 
     
     

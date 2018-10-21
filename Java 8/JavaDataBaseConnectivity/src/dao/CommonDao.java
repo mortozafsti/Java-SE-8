@@ -8,4 +8,5 @@ public interface CommonDao {
     List<?> getList();
 
     void insert(Employee obj);
+    void create(Employee obj);
 }

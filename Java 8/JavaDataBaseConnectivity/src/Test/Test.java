@@ -13,11 +13,11 @@ public class Test {
         CommonDao daoCom = new EmployeeService();
         
         Employee employee = new Employee();
-        employee.setEmployeeID(207);
+        employee.setEmployeeID(208);
         employee.setFirstName("Milton");       
         daoCom.insert(employee);
         
-        
+       // daoCom.create(employee);
         List<Employee> list =  (List<Employee>) daoCom.getList();
                        
         for (Employee e : list) {
