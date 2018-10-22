@@ -12,8 +12,10 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
+import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
+import javax.swing.table.TableModel;
 
 /**
  *
@@ -24,6 +26,8 @@ public class StudentsForm extends javax.swing.JFrame {
     /** Creates new form StudentsForm */
     public StudentsForm() {
         initComponents();
+        this.setExtendedState(JFrame.MAXIMIZED_BOTH);
+        
     }
 
     /** This method is called from within the constructor to
@@ -282,6 +286,11 @@ public class StudentsForm extends javax.swing.JFrame {
                 "Name", "Email", "Age", "Gender", "Round", "Hobby", "Note"
             }
         ));
+        tblDisplay.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tblDisplayMouseClicked(evt);
+            }
+        });
         jScrollPane2.setViewportView(tblDisplay);
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
@@ -450,6 +459,50 @@ public class StudentsForm extends javax.swing.JFrame {
         StudentsUtils.displayFromFile("mortoza", tableModel);
         
     }//GEN-LAST:event_btnDisplayFromFileActionPerformed
+
+    private void tblDisplayMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblDisplayMouseClicked
+        
+        int i = tblDisplay.getSelectedRow();
+        TableModel model = tblDisplay.getModel();
+        txtName.setText(model.getValueAt(i, 0).toString());
+        txtEmail.setText(model.getValueAt(i, 1).toString());
+        txtAge.setText(model.getValueAt(i, 2).toString());
+        
+        String gender = model.getValueAt(i, 3).toString();
+        if (rdMAle.equals("Male")) {
+            rdMAle.setSelected(true);
+        }else{ 
+            rdMAle.setSelected(false);
+        }
+        if (rdFemale.equals("Female")) {
+            rdFemale.setSelected(true);
+        }else{ 
+            rdFemale.setSelected(false);
+        }
+        
+        String hobby = model.getValueAt(i, 4).toString();
+        if (hobby.contains("Codding")) {
+            ckbCoding.setSelected(true);
+        }else{ 
+            ckbCoding.setSelected(false);
+        }
+        if (hobby.contains("Reading")) {
+            ckbReading.setSelected(true);
+        }else{ 
+            ckbReading.setSelected(false);
+        }
+        if (hobby.contains("Writting")) {
+            ckbWritting.setSelected(true);
+        }else{ 
+            ckbWritting.setSelected(false);
+        }
+        
+        String round = model.getValueAt(i, 5).toString();
+        cmround.setSelectedItem(round);
+
+        
+        txtNote.setText(model.getValueAt(i, 6).toString());
+    }//GEN-LAST:event_tblDisplayMouseClicked
 
     /**
      * @param args the command line arguments

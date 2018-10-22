@@ -14,11 +14,11 @@ public class SwingPractise {
         //daoDomain.createTable(sq);
         Student studentt = new Student();
         studentt.setStudentId(33);
-        studentt.setStudentname("Kamal");
+        studentt.setStudentname("JAMIL");
         
         //daoDomain.insert(studentt);      
-        //daoDomain.update(studentt);      
-        daoDomain.delete(studentt);      
+        daoDomain.update(studentt);      
+       // daoDomain.delete(studentt);      
         
         for (Student s : daoDomain.getStudent()) {
             System.out.println(s.getStudentId()+" "+s.getStudentName());
