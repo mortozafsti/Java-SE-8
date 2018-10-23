@@ -10,6 +10,11 @@ public class Student {
     private String round;
     private String note;
 
+    public Student() {
+        
+    }
+
+    
     public Student(String name, String email, int age, String gender, String hobby, String round, String note) {
         this.name = name;
         this.email = email;

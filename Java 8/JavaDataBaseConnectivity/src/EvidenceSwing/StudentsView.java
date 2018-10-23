@@ -59,9 +59,9 @@ public class StudentsView extends javax.swing.JFrame {
         btnClearTable = new javax.swing.JButton();
         btnExit = new javax.swing.JButton();
         lblMsg = new javax.swing.JLabel();
-        txtNote = new javax.swing.JLabel();
+        jlebel8 = new javax.swing.JLabel();
         jScrollPane3 = new javax.swing.JScrollPane();
-        jTextArea1 = new javax.swing.JTextArea();
+        txtNote = new javax.swing.JTextArea();
         jPanel3 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
         tbldisplay = new javax.swing.JTable();
@@ -130,18 +130,38 @@ public class StudentsView extends javax.swing.JFrame {
         });
 
         btnClear.setText("Clear");
+        btnClear.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnClearActionPerformed(evt);
+            }
+        });
 
         btnDisplay.setText("DisplayFromFile");
+        btnDisplay.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnDisplayActionPerformed(evt);
+            }
+        });
 
         btnClearTable.setText("Clear Table");
+        btnClearTable.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnClearTableActionPerformed(evt);
+            }
+        });
 
         btnExit.setText("Exit");
+        btnExit.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnExitActionPerformed(evt);
+            }
+        });
 
-        txtNote.setText("Note");
+        jlebel8.setText("Note");
 
-        jTextArea1.setColumns(20);
-        jTextArea1.setRows(5);
-        jScrollPane3.setViewportView(jTextArea1);
+        txtNote.setColumns(20);
+        txtNote.setRows(5);
+        jScrollPane3.setViewportView(txtNote);
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -161,7 +181,7 @@ public class StudentsView extends javax.swing.JFrame {
                             .addComponent(jLabel5)
                             .addComponent(jLabel6)
                             .addComponent(jLabel7)
-                            .addComponent(txtNote))
+                            .addComponent(jlebel8))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(txtName)
@@ -233,7 +253,7 @@ public class StudentsView extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addComponent(txtNote)
+                        .addComponent(jlebel8)
                         .addGap(0, 0, Short.MAX_VALUE))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
                         .addGap(0, 0, Short.MAX_VALUE)
@@ -386,6 +406,52 @@ public class StudentsView extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_btnAddAndDisplayActionPerformed
 
+    private void btnDisplayActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDisplayActionPerformed
+        
+        String column[] ={" Name "," Email "," Age "," Gender "," Hobby "," Round "," Note ",};
+        DefaultTableModel tableModel;
+        tableModel = new DefaultTableModel(3, 7);
+        tableModel.setColumnIdentifiers(column);
+        tbldisplay.setModel(tableModel);
+        try {
+            StudentsUtils.displayFromFile("nilton", tableModel);
+        } catch (Exception ex) {
+            Logger.getLogger(StudentsView.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_btnDisplayActionPerformed
+
+    private void btnClearTableActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnClearTableActionPerformed
+       
+        DefaultTableModel model = (DefaultTableModel) tbldisplay.getModel();
+        model.setRowCount(0);
+        
+    }//GEN-LAST:event_btnClearTableActionPerformed
+
+    private void btnExitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnExitActionPerformed
+        
+        System.exit(0);
+        
+    }//GEN-LAST:event_btnExitActionPerformed
+
+    private void btnClearActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnClearActionPerformed
+        
+        txtName.setText("");
+        txtEmail.setText("");
+        txtAge.setText("");
+        
+        buttonGroup1.clearSelection();
+        
+        ckbCodding.setSelected(false);
+        ckbWritting.setSelected(false);
+        ckbReading.setSelected(false);
+        
+        cmbRound.setSelectedIndex(0); 
+        lblMsg.setText("");
+        txtNote.setText("");
+       
+        
+    }//GEN-LAST:event_btnClearActionPerformed
+
     public static void displayDataInTable(){ 
         
         
@@ -449,7 +515,7 @@ public class StudentsView extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel3;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane3;
-    private javax.swing.JTextArea jTextArea1;
+    private javax.swing.JLabel jlebel8;
     private javax.swing.JLabel lblMsg;
     private javax.swing.JRadioButton rdFemale;
     private javax.swing.JRadioButton rdMale;
@@ -457,6 +523,6 @@ public class StudentsView extends javax.swing.JFrame {
     private javax.swing.JTextField txtAge;
     private javax.swing.JTextField txtEmail;
     private javax.swing.JTextField txtName;
-    private javax.swing.JLabel txtNote;
+    private javax.swing.JTextArea txtNote;
     // End of variables declaration//GEN-END:variables
 }
