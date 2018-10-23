@@ -30,6 +30,7 @@ public class DOMCreateXMLDemo {
             
             
         } catch (Exception e) {
+            
         }
     }
 }
