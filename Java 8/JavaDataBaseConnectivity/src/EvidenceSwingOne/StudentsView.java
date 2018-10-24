@@ -446,43 +446,43 @@ public class StudentsView extends javax.swing.JFrame {
 
     private void tblDisplayMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblDisplayMouseClicked
 
-        int i = tblDisplay.getSelectedRow();
-        TableModel model = tblDisplay.getModel();
-        txtName.setText(model.getValueAt(i, 0).toString());
-        txtEmail.setText(model.getValueAt(i, 1).toString());
-        txtAge.setText(model.getValueAt(i, 2).toString());
-
-        String gender = model.getValueAt(i, 3).toString();
-        if (rdMale.equals("Male")) {
-            rdMale.setSelected(true);
-        } else {
-            rdMale.setSelected(false);
-        }
-        if (rdFemale.equals("Male")) {
-            rdFemale.setSelected(true);
-        } else {
-            rdFemale.setSelected(false);
-        }
-        String hobby = model.getValueAt(i, 4).toString();
-        if (hobby.contains("Codding")) {
-            ckbCodding.setSelected(true);
-        } else {
-            ckbCodding.setSelected(false);
-        }
-        if (hobby.contains("Reading")) {
-            ckbReading.setSelected(true);
-        } else {
-            ckbReading.setSelected(false);
-        }
-        if (hobby.contains("Writting")) {
-            ckbWritting.setSelected(true);
-        } else {
-            ckbWritting.setSelected(false);
-        }
-        String round = model.getValueAt(i, 5).toString();
-        cmbRound.setSelectedItem(round);
-
-        txtNote.setText(model.getValueAt(i, 6).toString());
+//        int i = tblDisplay.getSelectedRow();
+//        TableModel model = tblDisplay.getModel();
+//        txtName.setText(model.getValueAt(i, 0).toString());
+//        txtEmail.setText(model.getValueAt(i, 1).toString());
+//        txtAge.setText(model.getValueAt(i, 2).toString());
+//
+//        String gender = model.getValueAt(i, 3).toString();
+//        if (rdMale.equals("Male")) {
+//            rdMale.setSelected(true);
+//        } else {
+//            rdMale.setSelected(false);
+//        }
+//        if (rdFemale.equals("Male")) {
+//            rdFemale.setSelected(true);
+//        } else {
+//            rdFemale.setSelected(false);
+//        }
+//        String hobby = model.getValueAt(i, 4).toString();
+//        if (hobby.contains("Codding")) {
+//            ckbCodding.setSelected(true);
+//        } else {
+//            ckbCodding.setSelected(false);
+//        }
+//        if (hobby.contains("Reading")) {
+//            ckbReading.setSelected(true);
+//        } else {
+//            ckbReading.setSelected(false);
+//        }
+//        if (hobby.contains("Writting")) {
+//            ckbWritting.setSelected(true);
+//        } else {
+//            ckbWritting.setSelected(false);
+//        }
+//        String round = model.getValueAt(i, 5).toString();
+//        cmbRound.setSelectedItem(round);
+//
+//        txtNote.setText(model.getValueAt(i, 6).toString());
     }//GEN-LAST:event_tblDisplayMouseClicked
 
     public static void main(String args[]) {
