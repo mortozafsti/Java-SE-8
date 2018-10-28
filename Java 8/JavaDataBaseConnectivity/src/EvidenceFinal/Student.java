@@ -18,5 +18,18 @@ public class Student {
     private String hobby;
     private String round;
     private String note;
+
+    public Student() {
+    }
+
+    public Student(String name, String email, String age, String gender, String hobby, String round, String note) {
+        this.name = name;
+        this.email = email;
+        this.age = age;
+        this.gender = gender;
+        this.hobby = hobby;
+        this.round = round;
+        this.note = note;
+    }
     
 }
