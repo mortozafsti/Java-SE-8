@@ -11,4 +11,12 @@ package EvidenceFinal;
  */
 public class Student {
     
+    private String name;
+    private String email;
+    private String age;
+    private String gender;
+    private String hobby;
+    private String round;
+    private String note;
+    
 }
