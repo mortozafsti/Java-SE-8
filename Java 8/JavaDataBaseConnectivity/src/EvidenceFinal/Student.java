@@ -31,5 +31,33 @@ public class Student {
         this.round = round;
         this.note = note;
     }
+
+    public String getName() {
+        return name;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public String getAge() {
+        return age;
+    }
+
+    public String getGender() {
+        return gender;
+    }
+
+    public String getHobby() {
+        return hobby;
+    }
+
+    public String getRound() {
+        return round;
+    }
+
+    public String getNote() {
+        return note;
+    }
     
 }
