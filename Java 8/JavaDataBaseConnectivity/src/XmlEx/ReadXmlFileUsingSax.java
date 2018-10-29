@@ -21,7 +21,10 @@ public class ReadXmlFileUsingSax {
                 public void startElement(String uri, String localName, String qName, Attributes attributes) throws SAXException {
                     System.out.println("Start Element: "+qName);
                     if (qName.equalsIgnoreCase("FULLNAME")) { 
-                        
+                        bfname = true;
+                    }
+                    if (qName.equalsIgnoreCase("FULLNAME")) { 
+                        bsalary = true;
                     }
                     super.startElement(uri, localName, qName, attributes); //To change body of generated methods, choose Tools | Templates.
                 }
