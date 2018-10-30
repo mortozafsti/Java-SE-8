@@ -11,10 +11,15 @@ import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
 public class Utils {
+    
 
     
     
     public static void main(String[] args) {
+        String num1 = "40";
+        
+        System.out.println("Num: "+num1.toString(2) > 1);
+        
         
     }
     public static void writeToFile(String filename,List<Student> students){ 
