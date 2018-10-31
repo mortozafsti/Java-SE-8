@@ -46,17 +46,17 @@ public class StudentsView extends javax.swing.JFrame {
     /**
      * @param args the command line arguments
      */
-//    public  boolean checkEmailValidation(String email){ 
-//        
-//        int atpos = email.indexOf("@");
-//        int dotpos = email.lastIndexOf(".");
-//        
-//        if (atpos > 1 && (dotpos - atpos) > 2 && dotpos < email.length() - 2 ) {
-//            return true;
-//        }else{ 
-//            return false;
-//        }
-//    }
+    public  boolean checkEmailValidation(String email){ 
+        
+        int atpos = email.indexOf("@");
+        int dotpos = email.lastIndexOf(".");
+        
+        if (atpos > 1 && (dotpos - atpos) > 2 && dotpos < email.length() - 2 ) {
+            return true;
+        }else{ 
+            return false;
+        }
+    }
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
