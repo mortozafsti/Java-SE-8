@@ -10,6 +10,7 @@ import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
+import javax.swing.JTextField;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableModel;
 
@@ -66,6 +67,7 @@ public class StudentsView extends javax.swing.JFrame {
         btnClear = new javax.swing.JButton();
         btnClearTable = new javax.swing.JButton();
         btnExit = new javax.swing.JButton();
+        btnUpdateRow = new javax.swing.JButton();
         jPanel3 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
         tblDisplay = new javax.swing.JTable();
@@ -171,6 +173,13 @@ public class StudentsView extends javax.swing.JFrame {
             }
         });
 
+        btnUpdateRow.setText("Update Row");
+        btnUpdateRow.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnUpdateRowActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
@@ -222,7 +231,9 @@ public class StudentsView extends javax.swing.JFrame {
                             .addGroup(jPanel2Layout.createSequentialGroup()
                                 .addComponent(btnClearTable)
                                 .addGap(18, 18, 18)
-                                .addComponent(btnExit)))
+                                .addComponent(btnExit)
+                                .addGap(18, 18, 18)
+                                .addComponent(btnUpdateRow)))
                         .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
         );
@@ -280,7 +291,8 @@ public class StudentsView extends javax.swing.JFrame {
                 .addGap(18, 18, 18)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnClearTable)
-                    .addComponent(btnExit))
+                    .addComponent(btnExit)
+                    .addComponent(btnUpdateRow))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -522,6 +534,24 @@ public class StudentsView extends javax.swing.JFrame {
         txtMsg.setText(model.getValueAt(i, 8).toString());
     }//GEN-LAST:event_tblDisplayMouseClicked
 
+    private void btnUpdateRowActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUpdateRowActionPerformed
+        
+        int i = tblDisplay.getSelectedRow();
+        DefaultTableModel model = (DefaultTableModel) tblDisplay.getModel();
+        if (i >= 0) {
+            
+            model.setValueAt(txtId.getText(), i, 0);
+            model.setValueAt(txtName.getText(), i, 1);
+            model.setValueAt(txtPass.getText(), i, 2);
+            model.setValueAt(txtEmail.getText(), i, 3);
+            model.setValueAt(txtAge.getText(), i, 4);
+            //model.setValueAt(txt.getText(), i, 5);
+            
+        }else{ 
+            JOptionPane.showMessageDialog(null, "Updated Error");
+        }
+    }//GEN-LAST:event_btnUpdateRowActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -561,6 +591,7 @@ public class StudentsView extends javax.swing.JFrame {
     private javax.swing.JButton btnClear;
     private javax.swing.JButton btnClearTable;
     private javax.swing.JButton btnExit;
+    private javax.swing.JButton btnUpdateRow;
     private javax.swing.JButton btnWriteToFile;
     private javax.swing.JButton btnreadFromFile;
     private javax.swing.ButtonGroup buttonGroup1;
