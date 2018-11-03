@@ -11,6 +11,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
+import javax.swing.table.TableModel;
 
 /**
  *
@@ -293,6 +294,11 @@ public class StudentsView extends javax.swing.JFrame {
                 "Id", "Name", "Pass", "Email", "Age", "Gender", "Hobby", "Round", "Msg"
             }
         ));
+        tblDisplay.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tblDisplayMouseClicked(evt);
+            }
+        });
         jScrollPane1.setViewportView(tblDisplay);
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
@@ -341,17 +347,17 @@ public class StudentsView extends javax.swing.JFrame {
         
     }//GEN-LAST:event_btnExitActionPerformed
 
-//    public boolean checkEmailValidation(String email){ 
-//        
-//        int atpos = email.indexOf("@");
-//        int dotpos = email.lastIndexOf(".");
-//        
-//        if (atpos > 2 && (dotpos - atpos) > 2 && dotpos < email.length() - 2) {
-//            return true;
-//        }else{ 
-//            return false;
-//        }
-//    }
+    public boolean checkEmailValidation(String email){ 
+        
+        int atpos = email.indexOf("@");
+        int dotpos = email.lastIndexOf(".");
+        
+        if (atpos > 2 && (dotpos - atpos) > 2 && dotpos < email.length() - 2) {
+            return true;
+        }else{ 
+            return false;
+        }
+    }
     private void btnWriteToFileActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnWriteToFileActionPerformed
       
         String id="",name="",pass="",email="",age="",gender="",hobby="",round="",msg="";
@@ -470,6 +476,51 @@ public class StudentsView extends javax.swing.JFrame {
         
          
     }//GEN-LAST:event_btnClearActionPerformed
+
+    private void tblDisplayMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblDisplayMouseClicked
+        
+        int i = tblDisplay.getSelectedRow();
+        
+        TableModel model = tblDisplay.getModel();
+        
+        txtId.setText(model.getValueAt(i, 0).toString());
+        txtName.setText(model.getValueAt(i, 1).toString());
+        txtPass.setText(model.getValueAt(i, 2).toString());
+        txtEmail.setText(model.getValueAt(i, 3).toString());
+        txtAge.setText(model.getValueAt(i, 4).toString());
+        
+        String gender = model.getValueAt(i, 5).toString();
+        if (rdMale.equals("Male")) {
+            rdMale.setSelected(true);
+        }else{ 
+            rdMale.setSelected(false);
+        }
+        if (rdFemale.equals("Male")) {
+            rdFemale.setSelected(true);
+        }else{ 
+            rdFemale.setSelected(false);
+        }
+        String hobby = model.getValueAt(i, 6).toString();
+        if (hobby.contains("Codding")) {
+            ckbCoding.setSelected(true);
+        }else{ 
+            ckbCoding.setSelected(false);
+        }
+        if (hobby.contains("Reading")) {
+            ckbReading.setSelected(true);
+        }else{ 
+            ckbReading.setSelected(false);
+        }
+        if (hobby.contains("Writting")) {
+            ckbWritting.setSelected(true);
+        }else{ 
+            ckbWritting.setSelected(false);
+        }
+        String round = model.getValueAt(i, 7).toString();
+        cmbRound.setSelectedItem(round);
+        
+        txtMsg.setText(model.getValueAt(i, 8).toString());
+    }//GEN-LAST:event_tblDisplayMouseClicked
 
     /**
      * @param args the command line arguments

@@ -12,20 +12,6 @@ import javax.swing.table.DefaultTableModel;
 
 public class Utils {
     
-
-    
-    
-    public static void main(String[] args) {
-        String num1 = "40";
-        
-<<<<<<< HEAD
-        
-=======
-        //System.out.println("Num: "+num1.toString(2) > 1);
->>>>>>> 7f6191501f3d3522db1ee34e84422c4750e7edeb
-        
-        
-    }
     public static void writeToFile(String filename,List<Student> students){ 
         File destfile = new File(filename+".txt");
         try {

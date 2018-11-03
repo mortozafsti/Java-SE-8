@@ -24,7 +24,7 @@ public class Utils {
             }
             PrintWriter out = new PrintWriter(new FileWriter(destfile, true));
             for (Student s : students) {
-                out.append(s.getId()+", "+s.getName()+", "+s.getPass()+", "+s.getEmail()+", "+s.getAge()+", "+s.getGender()+", "+s.getHobby()+", "+s.getRound()+", "+s.getMsg()+", "+"\n");
+                out.append(s.getId()+", "+s.getName()+", "+s.getPass()+", "+s.getEmail()+", "+s.getAge()+", "+s.getGender()+", "+s.getHobby()+", "+s.getRound()+", "+s.getMsg()+"\n");
                 
             }
             out.close();
