@@ -18,7 +18,7 @@ public class Utils {
     public static void main(String[] args) {
         String num1 = "40";
         
-        System.out.println("Num: "+num1.toString(2) > 1);
+        
         
         
     }

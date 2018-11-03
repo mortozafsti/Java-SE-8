@@ -10,5 +10,8 @@ package EvidenceFinal;
  * @author Cf-37
  */
 public class Utils {
+    public static void main(String[] args) {
+        
+    }
     
 }
