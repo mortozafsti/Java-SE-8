@@ -11,20 +11,16 @@ import javax.swing.table.DefaultTableModel;
 
 public class Utils {
 
-    public static void main(String[] args) {
-
-    }
-
-    public void writeToFile(String filename,List<Student> students) {
-        File destfile = new File(filename+".txt");
+    public static void writeToFile(String filename, List<Student> students) {
+        File destfile = new File(filename + ".txt");
         try {
             if (destfile.exists() == false) {
                 System.out.println("We had to Create New File");
-                destfile.createNewFile();               
+                destfile.createNewFile();
             }
             PrintWriter out = new PrintWriter(new FileWriter(destfile, true));
             for (Student s : students) {
-                out.append(s.getId()+", "+s.getName()+", "+s.getEmail()+", "+s.getAge()+", "+s.getGender()+", "+s.getHobby()+", "+s.getRound()+", "+s.getNote());
+                out.append(s.getId() + ", " + s.getName() + ", " + s.getEmail() + ", " + s.getAge() + ", " + s.getGender() + ", " + s.getHobby() + ", " + s.getRound() + ", " + s.getNote() + "\n");
             }
             out.close();
         } catch (Exception e) {
@@ -32,14 +28,14 @@ public class Utils {
         }
     }
 
-    public void displayFromFile(String filename,DefaultTableModel model) {
+    public static void displayFromFile(String filename, DefaultTableModel model) {
         String line;
         BufferedReader reader;
         try {
-            reader = new  BufferedReader(new FileReader(filename+".txt"));
-            while ((line=reader.readLine())  != null) {
+            reader = new BufferedReader(new FileReader(filename + ".txt"));
+            while ((line = reader.readLine()) != null) {
                 model.addRow(line.split(", "));
-                 
+
             }
             reader.close();
         } catch (Exception e) {
