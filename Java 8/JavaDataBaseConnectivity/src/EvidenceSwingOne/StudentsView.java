@@ -8,7 +8,6 @@ import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableModel;
-import sun.util.logging.resources.logging;
 
 public class StudentsView extends javax.swing.JFrame {
 
@@ -350,7 +349,7 @@ public class StudentsView extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null, "Enter the Age");
         } else if (buttonGroup1.getSelection().isSelected() == false) {
             JOptionPane.showMessageDialog(null, "Enter the Gender");
-        } else if (!ckbCodding.isSelected() && !ckbWritting.isSelected() && !ckbReading.isSelected()) {
+        } else if (!ckbCodding.isSelected() && !ckbReading.isSelected() && !ckbWritting.isSelected()) {
             JOptionPane.showMessageDialog(null, "Enter the Hobby");
         } else if (cmbRound.getItemAt(cmbRound.getSelectedIndex()) == "Select A Round") {
             JOptionPane.showMessageDialog(null, "Enter the Round");
