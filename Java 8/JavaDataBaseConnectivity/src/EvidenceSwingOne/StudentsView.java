@@ -7,8 +7,6 @@ import java.util.logging.Logger;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
-import javax.swing.table.TableModel;
-import sun.util.logging.resources.logging;
 
 public class StudentsView extends javax.swing.JFrame {
 
