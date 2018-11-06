@@ -1,5 +1,5 @@
 
-package EvidenceSwingNine;
+package EvidenceEight;
 
 import java.io.BufferedReader;
 import java.io.File;
@@ -15,20 +15,19 @@ public class StudentsUtil {
         File destfile = new File(filename+".txt");
         try {
             if (destfile.exists() == false) {
-                System.out.println("We had to create new File");
+                System.out.println("We had to create New File");
                 destfile.createNewFile();
             }
             PrintWriter out = new PrintWriter(new FileWriter(destfile,true));
             for (Student s : students) {
-                out.append(s.getId()+", "+s.getPass()+", "+s.getName()+", "+s.getEmail()+", "+s.getAge()+", "+s.getGender()+", "+s.getHobby()+", "+s.getRound()+", "+s.getNote()+"\n");
+                out.append(s.getId()+", "+s.getPass()+", "+s.getName()+", "+s.getEmail()+", "+s.getAge()+", "+s.getGender()+", "+s.getHobby()+", "+s.getRound()+", "+s.getMsg()+"\n");
             }
             out.close();
         } catch (Exception e) {
-            System.out.println("Could Not Log");
+            System.out.println("Could not Log");
         }
-        
     }
-    public static void displayFromFile(String filename,DefaultTableModel model){
+    public static void displayFromFile(String filename,DefaultTableModel model) {
         String line;
         BufferedReader reader;
         try {
@@ -39,7 +38,8 @@ public class StudentsUtil {
             }
             reader.close();
         } catch (Exception e) {
-            JOptionPane.showMessageDialog(null, "Buffered Reader Issued");
+            JOptionPane.showMessageDialog(null, "Buffedred Redaer Issued");
         }
+        
     }
 }
