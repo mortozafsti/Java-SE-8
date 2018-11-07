@@ -3,6 +3,7 @@ package JDBC;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -61,5 +62,23 @@ public class InsertIntoTable {
         } catch (SQLException ex) {
             Logger.getLogger(InsertIntoTable.class.getName()).log(Level.SEVERE, null, ex);
         }
+    }
+    
+    public static ResultSet getDataById(int id){ 
+        ResultSet rs=null;
+        String sql="Select * from division where id = ?";
+        try {
+            PreparedStatement ps = conn.prepareStatement(sql);
+            ps.setInt(1, id); 
+             rs = ps.executeQuery();
+            
+//            while (rs.next()) {
+//                System.out.println(rs.getInt(1)+" "+rs.getString(2)); 
+//                
+//            }     
+        } catch (Exception e) {
+            
+        }
+        return rs;
     }
 }
