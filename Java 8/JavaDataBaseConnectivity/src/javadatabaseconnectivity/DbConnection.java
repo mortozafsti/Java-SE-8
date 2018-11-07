@@ -19,7 +19,7 @@ public class DbConnection {
         try {
             connection = DriverManager.getConnection(url + dbname, dbUsername,dbPass);
             System.out.println("::Connected::");
-        } catch (SQLException e) {
+        } catch (SQLException e) { 
             e.printStackTrace();
            // Logger.getLogger(DbConnection.class.getName()).log(Level.SEVERE, null,e);
         }
