@@ -240,7 +240,7 @@ public class StudentsView extends javax.swing.JFrame {
             while (rs.next()) {
                 txtId.setText(String.valueOf(rs.getInt(1)));
                 txtName.setText(rs.getString(2));
-                txtName.setText(rs.getString(2));
+               // txtName.setText(rs.getString(2));
                 txtEmail.setText(rs.getString(3));
                 displayData();
 

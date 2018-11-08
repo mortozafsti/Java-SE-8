@@ -22,6 +22,9 @@ public class StudentsUtil {
             for (Student s : students) {
                 out.append(s.getId()+", "+s.getPass()+", "+s.getName()+", "+s.getEmail()+", "+s.getAge()+", "+s.getGender()+", "+s.getHobby()+", "+s.getRound()+", "+s.getNote()+"\n");
             }
+            for (Student s : students) {
+                out.append(s.getEmail()+"\n");
+            }
             out.close();
         } catch (Exception e) {
             System.out.println("Could Not Log");

@@ -16,6 +16,11 @@ public class Student {
     public Student() {
     }
 
+    public Student(String email) {
+        this.email = email;
+    }
+    
+
     public Student(String id, String pass, String name, String email, int age, String gender, String hobby, String round, String note) {
         this.id = id;
         this.pass = pass;
