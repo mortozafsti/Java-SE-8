@@ -21,7 +21,7 @@ public class CreateTableUsingMysql {
             Logger.getLogger(CreateTableUsingMysql.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
-    public static void main(String[] args) {
-        createTables();
-    }
+//    public static void main(String[] args) {
+//        createTables();
+//    }
 }
