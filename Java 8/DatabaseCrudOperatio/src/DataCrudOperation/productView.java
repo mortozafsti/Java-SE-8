@@ -299,8 +299,10 @@ public class productView extends javax.swing.JFrame {
         p.setQty(Integer.parseInt(txtQty.getText()));
         p.setUnit_price(Double.parseDouble(txtUnitPrice.getText()));
         p.setTotal_price(Double.parseDouble(txtTotalPrice.getText()));
-        p.setPurchase_date(new Date(txtPurchaseDate.getText()));
-        
+        p.setPurchase_date(new Date());
+        Category c=new Category();
+        c.setId(Integer.parseInt(txtCatId.getText()));
+        p.setCategory(c);
         CatAndproUtils.proUpdate(p);
         showDataInTable();
         

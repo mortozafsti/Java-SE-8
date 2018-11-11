@@ -56,7 +56,7 @@ public class CatAndproUtils {
             ps.setInt(2, p.getQty());
             ps.setDouble(3, p.getUnit_price());
             ps.setDouble(4, p.getTotal_price());
-            ps.setDate(5, (Date) p.getPurchase_date());
+           ps.setDate(5, new java.sql.Date(p.getPurchase_date().getDate()));
             ps.setInt(6, p.getCategory().getId());
             ps.setInt(7, p.getP_id());
             
@@ -78,7 +78,7 @@ public class CatAndproUtils {
             ps.setInt(3, p.getQty());
             ps.setDouble(4, p.getUnit_price());
             ps.setDouble(5, p.getTotal_price());
-            ps.setDate(6, new java.sql.Date(p.getPurchase_date().getDate()));
+            ps.setDate(6, new java.sql.Date(p.getPurchase_date().getTime()));
             ps.setInt(7, p.getCategory().getId());            
             
             ps.executeUpdate();
