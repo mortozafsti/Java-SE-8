@@ -23,7 +23,7 @@ public class CreateTable {
         
     }
     public static void productTable() {
-        String sql ="create table product(p_id int(10) primary key auto_increment,name varchar(15),qty int(10),unit_price double,total_price double,purchase_date Date,cat_id int(10),constraint foreign key (cat_id) references category(id))";        
+        String sql ="create table products(p_id int(10) primary key auto_increment,name varchar(15),qty int(10),unit_price double,total_price double,purchase_date Date,cat_id int(10),constraint foreign key (cat_id) references category(id))";        
         try {
             PreparedStatement ps =conn.prepareStatement(sql);
             ps.execute();
@@ -32,7 +32,7 @@ public class CreateTable {
         }
         
     }
-//    public static void main(String[] args) {
-//        productTable();
-//    }
+    public static void main(String[] args) {
+        productTable();
+    }
 }

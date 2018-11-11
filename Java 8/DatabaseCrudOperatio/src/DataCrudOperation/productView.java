@@ -5,7 +5,11 @@
  */
 package DataCrudOperation;
 
+import java.sql.ResultSet;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
+import javax.swing.table.DefaultTableModel;
 
 /**
  *
@@ -18,6 +22,7 @@ public class productView extends javax.swing.JFrame {
      */
     public productView() {
         initComponents();
+        showDataInTable();
     }
 
     /**
@@ -48,6 +53,10 @@ public class productView extends javax.swing.JFrame {
         txtCatId = new javax.swing.JTextField();
         lblMsg = new javax.swing.JLabel();
         btnSubmit = new javax.swing.JButton();
+        btnSow = new javax.swing.JButton();
+        btnUpdate = new javax.swing.JButton();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        tblDisplay = new javax.swing.JTable();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -62,7 +71,7 @@ public class productView extends javax.swing.JFrame {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(111, 111, 111)
                 .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 309, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(125, Short.MAX_VALUE))
+                .addContainerGap(440, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -95,37 +104,57 @@ public class productView extends javax.swing.JFrame {
             }
         });
 
+        btnSow.setText("Show Data");
+        btnSow.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnSowActionPerformed(evt);
+            }
+        });
+
+        btnUpdate.setText("Update");
+        btnUpdate.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnUpdateActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                        .addGroup(jPanel2Layout.createSequentialGroup()
+                            .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(jLabel2)
+                                .addComponent(jLabel3)
+                                .addComponent(jLabel4)
+                                .addComponent(jLabel5)
+                                .addComponent(jLabel6))
+                            .addGap(37, 37, 37)
+                            .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                .addComponent(txtUnitPrice, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 167, Short.MAX_VALUE)
+                                .addComponent(txtQty, javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(txtName, javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(txtId, javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(txtTotalPrice)))
+                        .addGroup(jPanel2Layout.createSequentialGroup()
+                            .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(jLabel7)
+                                .addComponent(jLabel8))
+                            .addGap(18, 18, 18)
+                            .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(txtCatId, javax.swing.GroupLayout.DEFAULT_SIZE, 166, Short.MAX_VALUE)
+                                .addComponent(lblMsg, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(txtPurchaseDate))))
                     .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel2)
-                            .addComponent(jLabel3)
-                            .addComponent(jLabel4)
-                            .addComponent(jLabel5)
-                            .addComponent(jLabel6))
-                        .addGap(37, 37, 37)
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(txtId)
-                            .addComponent(txtName)
-                            .addComponent(txtQty)
-                            .addComponent(txtUnitPrice)
-                            .addComponent(txtTotalPrice, javax.swing.GroupLayout.DEFAULT_SIZE, 387, Short.MAX_VALUE)))
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel7)
-                            .addComponent(jLabel8))
-                        .addGap(18, 18, 18)
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(btnSubmit)
-                            .addComponent(txtPurchaseDate, javax.swing.GroupLayout.DEFAULT_SIZE, 386, Short.MAX_VALUE)
-                            .addComponent(txtCatId)
-                            .addComponent(lblMsg, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                        .addComponent(btnSubmit)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(btnSow)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(btnUpdate)))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
@@ -161,10 +190,23 @@ public class productView extends javax.swing.JFrame {
                     .addComponent(txtCatId, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(26, 26, 26)
                 .addComponent(lblMsg, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(38, 38, 38)
-                .addComponent(btnSubmit)
-                .addContainerGap(48, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 29, Short.MAX_VALUE)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btnSubmit)
+                    .addComponent(btnSow)
+                    .addComponent(btnUpdate))
+                .addGap(57, 57, 57))
         );
+
+        tblDisplay.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+
+            },
+            new String [] {
+                "P_Id", "Name", "Qty", "Unit_Price", "Total_Price", "Purchase_Date", "Cat_Id"
+            }
+        ));
+        jScrollPane1.setViewportView(tblDisplay);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -174,7 +216,10 @@ public class productView extends javax.swing.JFrame {
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(jScrollPane1)))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -182,8 +227,10 @@ public class productView extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 61, Short.MAX_VALUE))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(0, 53, Short.MAX_VALUE))
         );
 
         pack();
@@ -194,10 +241,11 @@ public class productView extends javax.swing.JFrame {
         int p_id = Integer.parseInt(txtId.getText());
         String name = txtName.getText();
         int qty = Integer.parseInt(txtQty.getText()); 
-        double unit_price = Integer.parseInt(txtUnitPrice.getText());
-        double total_price = Integer.parseInt(txtTotalPrice.getText());
+        double unit_price = Double.parseDouble(txtUnitPrice.getText());
+        double total_price = Double.parseDouble(txtTotalPrice.getText());
         Date purchase_date =new Date();
         Category c = new Category();
+        c.setId(Integer.parseInt(txtCatId.getText())); 
         
         Product p = new Product();
         p.setP_id(p_id);
@@ -208,8 +256,9 @@ public class productView extends javax.swing.JFrame {
         p.setPurchase_date(purchase_date);
         p.setCategory(c); 
         
+       
         CatAndproUtils.proInsert(p); 
-        
+         showDataInTable();
         lblMsg.setText("Successfullt Inserted"); 
         
         txtId.setText(""); 
@@ -222,6 +271,49 @@ public class productView extends javax.swing.JFrame {
         
         
     }//GEN-LAST:event_btnSubmitActionPerformed
+
+    private void btnSowActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSowActionPerformed
+        
+        try {
+            ResultSet rs = CatAndproUtils.DatagetByIdPro(Integer.parseInt(txtId.getText()));
+            while (rs.next()) {
+                txtId.setText(String.valueOf(rs.getInt(1)));
+                txtName.setText(rs.getString(2));
+                txtQty.setText(String.valueOf(rs.getInt(3)));
+                txtUnitPrice.setText(String.valueOf(rs.getDouble(4))); 
+                txtTotalPrice.setText(String.valueOf(rs.getDouble(5)));
+                txtPurchaseDate.setText(String.valueOf(rs.getDate(6)));
+                txtCatId.setText(String.valueOf(rs.getInt(7))); 
+                
+                showDataInTable();
+            }
+        } catch (Exception e) {
+        }
+    }//GEN-LAST:event_btnSowActionPerformed
+
+    private void btnUpdateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUpdateActionPerformed
+       
+        Product p = new Product();
+        p.setP_id(Integer.parseInt(txtId.getText()));
+        p.setName(txtName.getText());
+        p.setQty(Integer.parseInt(txtQty.getText()));
+        p.setUnit_price(Double.parseDouble(txtUnitPrice.getText()));
+        p.setTotal_price(Double.parseDouble(txtTotalPrice.getText()));
+        p.setPurchase_date(new Date(txtPurchaseDate.getText()));
+        
+        CatAndproUtils.proUpdate(p);
+        showDataInTable();
+        
+        lblMsg.setText("SuccessFully Updated"); 
+        
+        txtId.setText("");
+        txtName.setText("");
+        txtQty.setText("");
+        txtUnitPrice.setText("");
+        txtTotalPrice.setText("");
+        txtPurchaseDate.setText("");
+        txtCatId.setText("");
+    }//GEN-LAST:event_btnUpdateActionPerformed
 
     /**
      * @param args the command line arguments
@@ -259,7 +351,9 @@ public class productView extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnSow;
     private javax.swing.JButton btnSubmit;
+    private javax.swing.JButton btnUpdate;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
@@ -270,7 +364,9 @@ public class productView extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel8;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
+    private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JLabel lblMsg;
+    private javax.swing.JTable tblDisplay;
     private javax.swing.JTextField txtCatId;
     private javax.swing.JTextField txtId;
     private javax.swing.JTextField txtName;
@@ -279,4 +375,26 @@ public class productView extends javax.swing.JFrame {
     private javax.swing.JTextField txtTotalPrice;
     private javax.swing.JTextField txtUnitPrice;
     // End of variables declaration//GEN-END:variables
+
+    private void showDataInTable() {
+        
+       
+        
+        List<Product> ps = CatAndproUtils.showData();
+  
+        DefaultTableModel model =(DefaultTableModel) tblDisplay.getModel();
+        Object[] row = new Object[7];
+        model.setRowCount(0); 
+        
+        for (int i = 0; i < ps.size(); i++) {
+            row[0] = ps.get(i).getP_id();
+            row[1] = ps.get(i).getName();
+            row[2] = ps.get(i).getQty();
+            row[3] = ps.get(i).getUnit_price();
+            row[4] = ps.get(i).getTotal_price();
+            row[5] = ps.get(i).getPurchase_date();
+            row[6] = ps.get(i).getCategory().getId();
+            model.addRow(row); 
+        }
+    }
 }

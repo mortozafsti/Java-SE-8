@@ -13,6 +13,20 @@ public class Product {
     private Date purchase_date;
     private Category category;
 
+    public Product() {
+    }
+
+    public Product(int p_id, String name, int qty, double unit_price, double total_price, Date purchase_date, Category category) {
+        this.p_id = p_id;
+        this.name = name;
+        this.qty = qty;
+        this.unit_price = unit_price;
+        this.total_price = total_price;
+        this.purchase_date = purchase_date;
+        this.category = category;
+    }
+
+    
     public int getP_id() {
         return p_id;
     }
