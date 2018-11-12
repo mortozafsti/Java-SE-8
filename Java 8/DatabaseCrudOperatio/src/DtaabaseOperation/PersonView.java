@@ -101,6 +101,11 @@ public class PersonView extends javax.swing.JFrame {
         });
 
         btnDelete.setText("Delete");
+        btnDelete.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnDeleteActionPerformed(evt);
+            }
+        });
 
         btnClear.setText("Clear");
         btnClear.addActionListener(new java.awt.event.ActionListener() {
@@ -314,6 +319,10 @@ public class PersonView extends javax.swing.JFrame {
         } catch (Exception e) {
         }
     }//GEN-LAST:event_btnShowActionPerformed
+ 
+    private void btnDeleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDeleteActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnDeleteActionPerformed
 
     /**
      * @param args the command line arguments

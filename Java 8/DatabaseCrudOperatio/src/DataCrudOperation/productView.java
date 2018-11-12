@@ -291,7 +291,7 @@ public class productView extends javax.swing.JFrame {
                 txtUnitPrice.setText(String.valueOf(rs.getDouble(4))); 
                 txtTotalPrice.setText(String.valueOf(rs.getDouble(5)));
                 txtPurchaseDate.setText(String.valueOf(rs.getDate(6)));
-                cmbCatId.getItemAt(cmbCatId.getSelectedIndex()); 
+                cmbCatId.getItemAt(cmbCatId.getSelectedIndex());
                 
                 showDataInTable();
             }
