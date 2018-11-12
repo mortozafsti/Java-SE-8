@@ -163,4 +163,21 @@ public class CatAndproUtils {
         }
         return rs;
     }
+    public static List<Category> getList() {
+        List<Category> list = new  ArrayList<>();
+        String sql = "select * from category";
+       
+        try {                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                           
+            PreparedStatement ps = conn.prepareStatement(sql);
+            ResultSet rs = ps.executeQuery();
+            while (rs.next()) {
+               list.add(new Category(rs.getInt(1),rs.getString(2))); 
+                
+            }
+
+        } catch (SQLException ex) {
+            Logger.getLogger(CatAndproUtils.class.getName()).log(Level.SEVERE, null, ex);
+        }
+       return list;
+    }
 }

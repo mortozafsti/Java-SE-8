@@ -9,6 +9,7 @@ import java.sql.ResultSet;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import javax.swing.DefaultComboBoxModel;
 import javax.swing.table.DefaultTableModel;
 
 /**
@@ -23,6 +24,7 @@ public class productView extends javax.swing.JFrame {
     public productView() {
         initComponents();
         showDataInTable();
+        comboxItemFromDatabase();
     }
 
     /**
@@ -50,11 +52,11 @@ public class productView extends javax.swing.JFrame {
         jLabel7 = new javax.swing.JLabel();
         txtPurchaseDate = new javax.swing.JTextField();
         jLabel8 = new javax.swing.JLabel();
-        txtCatId = new javax.swing.JTextField();
         lblMsg = new javax.swing.JLabel();
         btnSubmit = new javax.swing.JButton();
         btnSow = new javax.swing.JButton();
         btnUpdate = new javax.swing.JButton();
+        cmbCatId = new javax.swing.JComboBox<>();
         jScrollPane1 = new javax.swing.JScrollPane();
         tblDisplay = new javax.swing.JTable();
 
@@ -118,6 +120,12 @@ public class productView extends javax.swing.JFrame {
             }
         });
 
+        cmbCatId.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                cmbCatIdItemStateChanged(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
@@ -146,9 +154,9 @@ public class productView extends javax.swing.JFrame {
                                 .addComponent(jLabel8))
                             .addGap(18, 18, 18)
                             .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addComponent(txtCatId, javax.swing.GroupLayout.DEFAULT_SIZE, 166, Short.MAX_VALUE)
                                 .addComponent(lblMsg, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(txtPurchaseDate))))
+                                .addComponent(txtPurchaseDate, javax.swing.GroupLayout.DEFAULT_SIZE, 166, Short.MAX_VALUE)
+                                .addComponent(cmbCatId, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addComponent(btnSubmit)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -187,7 +195,7 @@ public class productView extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel8)
-                    .addComponent(txtCatId, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(cmbCatId, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(26, 26, 26)
                 .addComponent(lblMsg, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 29, Short.MAX_VALUE)
@@ -245,7 +253,7 @@ public class productView extends javax.swing.JFrame {
         double total_price = Double.parseDouble(txtTotalPrice.getText());
         Date purchase_date =new Date();
         Category c = new Category();
-        c.setId(Integer.parseInt(txtCatId.getText())); 
+        c.setId(Integer.parseInt(cmbCatId.getItemAt(cmbCatId.getSelectedIndex())));  
         
         Product p = new Product();
         p.setP_id(p_id);
@@ -267,7 +275,7 @@ public class productView extends javax.swing.JFrame {
         txtPurchaseDate.setText(""); 
         txtUnitPrice.setText(""); 
         txtTotalPrice.setText(""); 
-        txtCatId.setText(""); 
+        cmbCatId.getSelectedIndex(); 
         
         
     }//GEN-LAST:event_btnSubmitActionPerformed
@@ -283,7 +291,7 @@ public class productView extends javax.swing.JFrame {
                 txtUnitPrice.setText(String.valueOf(rs.getDouble(4))); 
                 txtTotalPrice.setText(String.valueOf(rs.getDouble(5)));
                 txtPurchaseDate.setText(String.valueOf(rs.getDate(6)));
-                txtCatId.setText(String.valueOf(rs.getInt(7))); 
+                cmbCatId.getItemAt(cmbCatId.getSelectedIndex()); 
                 
                 showDataInTable();
             }
@@ -301,7 +309,7 @@ public class productView extends javax.swing.JFrame {
         p.setTotal_price(Double.parseDouble(txtTotalPrice.getText()));
         p.setPurchase_date(new Date());
         Category c=new Category();
-        c.setId(Integer.parseInt(txtCatId.getText()));
+        c.setId(Integer.parseInt(cmbCatId.getItemAt(cmbCatId.getSelectedIndex()))); 
         p.setCategory(c);
         CatAndproUtils.proUpdate(p);
         showDataInTable();
@@ -314,9 +322,31 @@ public class productView extends javax.swing.JFrame {
         txtUnitPrice.setText("");
         txtTotalPrice.setText("");
         txtPurchaseDate.setText("");
-        txtCatId.setText("");
+        cmbCatId.getSelectedIndex();
     }//GEN-LAST:event_btnUpdateActionPerformed
 
+    private void cmbCatIdItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_cmbCatIdItemStateChanged
+       
+        String selCat = cmbCatId.getItemAt(cmbCatId.getSelectedIndex());
+        String splits[] = selCat.split("\\s+");
+        System.out.println("ID: "+splits[0]);
+    }//GEN-LAST:event_cmbCatIdItemStateChanged
+
+    private DefaultComboBoxModel comboBoxModel = null;
+    private void comboxItemFromDatabase() {
+        
+        comboBoxModel = new DefaultComboBoxModel();
+        List<Category> cat = CatAndproUtils.getList();
+        comboBoxModel.addElement("Select A category"); 
+        
+        for (Category c : cat) {
+            comboBoxModel.addElement(c.getId()); 
+        }
+        cmbCatId.setModel(comboBoxModel); 
+    }
+    
+    
+    
     /**
      * @param args the command line arguments
      */
@@ -356,6 +386,7 @@ public class productView extends javax.swing.JFrame {
     private javax.swing.JButton btnSow;
     private javax.swing.JButton btnSubmit;
     private javax.swing.JButton btnUpdate;
+    private javax.swing.JComboBox<String> cmbCatId;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
@@ -369,7 +400,6 @@ public class productView extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JLabel lblMsg;
     private javax.swing.JTable tblDisplay;
-    private javax.swing.JTextField txtCatId;
     private javax.swing.JTextField txtId;
     private javax.swing.JTextField txtName;
     private javax.swing.JTextField txtPurchaseDate;
@@ -399,4 +429,6 @@ public class productView extends javax.swing.JFrame {
             model.addRow(row); 
         }
     }
+
+    
 }
