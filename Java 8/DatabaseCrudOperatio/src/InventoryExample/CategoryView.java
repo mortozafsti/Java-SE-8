@@ -6,6 +6,11 @@
 package InventoryExample;
 
 import DataCrudOperation.CatAndproUtils;
+import static InventoryExample.CategoryAndProductUtils.ProInsert;
+import static InventoryExample.CategoryAndProductUtils.SummaryInsert;
+import static InventoryExample.CategoryAndProductUtils.SummaryUpdate;
+import static InventoryExample.CategoryAndProductUtils.getProductByName;
+import static InventoryExample.CategoryAndProductUtils.getSummaryById;
 import java.sql.ResultSet;
 import java.util.Date;
 import java.util.List;
@@ -358,7 +363,7 @@ public class CategoryView extends javax.swing.JFrame {
 
     private void btnInsert1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnInsert1ActionPerformed
         
-        Category c = new Category();
+        Category c = new Category(); 
         c.setCat_id((Integer.parseInt(txtId.getText()))); 
         c.setCat_name(txtName.getText()); 
         
@@ -385,7 +390,7 @@ public class CategoryView extends javax.swing.JFrame {
         
         p.setCategory(c);  
         
-        CategoryAndProductUtils.ProInsert(p);
+        CategoryAndProductUtils.dataInsertorUpdateIntoProductAndSummary(p);
         showDataInTableFromPro();
         lblTMsg.setText("Successfully Inserted"); 
         
@@ -398,6 +403,7 @@ public class CategoryView extends javax.swing.JFrame {
         txtCatId.setText(""); 
     }//GEN-LAST:event_btnInsertActionPerformed
 
+    
     private void btnShowData1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnShowData1ActionPerformed
         try {
             ResultSet rs = CategoryAndProductUtils.showCatDatagetById(Integer.parseInt(txtId.getText()));
@@ -575,4 +581,24 @@ public class CategoryView extends javax.swing.JFrame {
             model.addRow(row); 
         }
     }
+//    public void dataInsertorUpdateIntoProductAndSummary(Product p) {
+//        ProInsert(p);
+//        
+//        Product product = CategoryAndProductUtils.getProductByName(p.getP_name());
+//        
+//        int totalQty = 0;
+//        int availableQty = 0;
+//        
+//        if (p.getP_id() != 0) {
+//            Summary sumFromDB = CategoryAndProductUtils.getSummaryById(p.getP_id());
+//            totalQty = sumFromDB.getTotalQty()+ p.getP_qty();
+//            availableQty = totalQty - sumFromDB.getSoldQty();
+//            
+//            Summary summary = new Summary(sumFromDB.getId(),totalQty,0, availableQty);
+//            SummaryUpdate(summary); 
+//        }else{ 
+//            Summary  summary1 = new Summary(product,p.getP_qty(),0,p.getP_qty());
+//            SummaryInsert(summary1); 
+//        }
+//    }
 }
