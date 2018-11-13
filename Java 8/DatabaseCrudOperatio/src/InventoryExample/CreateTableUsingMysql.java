@@ -39,6 +39,7 @@ public class CreateTableUsingMysql {
         }
     }
     public static void main(String[] args) {
-       // createTableSum();
+        createTableSum();
+        
     }
 }

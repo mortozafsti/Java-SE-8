@@ -170,7 +170,7 @@ public class CategoryAndProductUtils {
 
     public static Summary getSummaryById(int pid) {
         Summary summary = null;
-        String sql = "select * from summary where id = ?";
+        String sql = "select * from summary where product_id = ?";
         try {
             PreparedStatement ps = conn.prepareStatement(sql);
             ps.setInt(1, pid);
@@ -205,15 +205,16 @@ public class CategoryAndProductUtils {
     }
     
     public static void dataInsertorUpdateIntoProductAndSummary(Product p) {
-        ProInsert(p);
+      
         
         Product product = getProductByName(p.getP_name());
         
         int totalQty = 0;
         int availableQty = 0;
         
-        if (p.getP_id() != 0) {
+        if (p.getP_id() != 0) { 
             Summary sumFromDB = getSummaryById(p.getP_id());
+            
             totalQty = sumFromDB.getTotalQty() + p.getP_qty();
             availableQty = totalQty - sumFromDB.getSoldQty();
             

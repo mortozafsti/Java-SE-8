@@ -31,7 +31,7 @@ public class CategoryView extends javax.swing.JFrame {
         //this.setExtendedState(JFrame.MAXIMIZED_BOTH); 
         showDataInTableFromCat();
         showDataInTableFromPro();
-       
+
     }
 
     /**
@@ -235,9 +235,9 @@ public class CategoryView extends javax.swing.JFrame {
         jPanel3Layout.setHorizontalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel3Layout.createSequentialGroup()
+                .addContainerGap()
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel3Layout.createSequentialGroup()
-                        .addContainerGap()
                         .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel4)
                             .addComponent(jLabel5)
@@ -257,7 +257,6 @@ public class CategoryView extends javax.swing.JFrame {
                             .addComponent(txtPDate, javax.swing.GroupLayout.DEFAULT_SIZE, 304, Short.MAX_VALUE)
                             .addComponent(txtCatId)))
                     .addGroup(jPanel3Layout.createSequentialGroup()
-                        .addGap(53, 53, 53)
                         .addComponent(btnInsert)
                         .addGap(18, 18, 18)
                         .addComponent(btnUpdate)
@@ -298,9 +297,9 @@ public class CategoryView extends javax.swing.JFrame {
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel10)
                     .addComponent(txtCatId, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(lblTMsg, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnInsert)
                     .addComponent(btnUpdate)
@@ -347,14 +346,13 @@ public class CategoryView extends javax.swing.JFrame {
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addGap(26, 26, 26)
                         .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 196, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(17, 17, 17)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(30, 30, 30)
-                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 339, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(9, 9, 9)
-                        .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(26, 26, 26)
+                        .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addGap(47, 47, 47)
+                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 304, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -362,55 +360,56 @@ public class CategoryView extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnInsert1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnInsert1ActionPerformed
-        
-        Category c = new Category(); 
-        c.setCat_id((Integer.parseInt(txtId.getText()))); 
-        c.setCat_name(txtName.getText()); 
-        
+
+        Category c = new Category();
+        c.setCat_id((Integer.parseInt(txtId.getText())));
+        c.setCat_name(txtName.getText());
+
         CategoryAndProductUtils.CatInsert(c);
         showDataInTableFromCat();
         lblMsg.setText("Successfully Inserted");
-        
+
         txtId.setText("");
         txtName.setText("");
-        
+
     }//GEN-LAST:event_btnInsert1ActionPerformed
 
     private void btnInsertActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnInsertActionPerformed
         Category c = new Category();
-        c.setCat_id(Integer.parseInt(txtCatId.getText())); 
-        
+        c.setCat_id(Integer.parseInt(txtCatId.getText()));
+
         Product p = new Product();
-        p.setP_id(Integer.parseInt(txtPId.getText())); 
-        p.setP_name(txtPName.getText()); 
+        // p.setP_id(Integer.parseInt(txtPId.getText())); 
+        p.setP_name(txtPName.getText());
         p.setP_qty(Integer.parseInt(txtQty.getText()));
         p.setUnit_price(Double.parseDouble(txtUnitPrice.getText()));
         p.setTotal_price(Double.parseDouble(txtTotalPrice.getText()));
         p.setPurchase_date(new Date());
-        
-        p.setCategory(c);  
-        
+
+        p.setCategory(c);
+        ProInsert(p);
+        p.setP_id(Integer.parseInt(txtPId.getText()));
         CategoryAndProductUtils.dataInsertorUpdateIntoProductAndSummary(p);
         showDataInTableFromPro();
-        lblTMsg.setText("Successfully Inserted"); 
-        
-        txtPId.setText(""); 
-        txtPName.setText(""); 
-        txtQty.setText(""); 
-        txtUnitPrice.setText(""); 
-        txtTotalPrice.setText(""); 
-        txtPDate.setText(""); 
-        txtCatId.setText(""); 
+        lblTMsg.setText("Successfully Inserted");
+
+        txtPId.setText("");
+        txtPName.setText("");
+        txtQty.setText("");
+        txtUnitPrice.setText("");
+        txtTotalPrice.setText("");
+        txtPDate.setText("");
+        txtCatId.setText("");
     }//GEN-LAST:event_btnInsertActionPerformed
 
-    
+
     private void btnShowData1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnShowData1ActionPerformed
         try {
             ResultSet rs = CategoryAndProductUtils.showCatDatagetById(Integer.parseInt(txtId.getText()));
             while (rs.next()) {
                 txtId.setText(String.valueOf(rs.getInt(1)));
-                txtName.setText(rs.getString(2)); 
-                
+                txtName.setText(rs.getString(2));
+
                 showDataInTableFromCat();
             }
         } catch (Exception e) {
@@ -424,11 +423,11 @@ public class CategoryView extends javax.swing.JFrame {
                 txtPId.setText(String.valueOf(rs.getInt(1)));
                 txtPName.setText(rs.getString(2));
                 txtQty.setText(String.valueOf(rs.getInt(3)));
-                txtUnitPrice.setText(String.valueOf(rs.getDouble(4))); 
-                txtTotalPrice.setText(String.valueOf(rs.getDouble(5))); 
+                txtUnitPrice.setText(String.valueOf(rs.getDouble(4)));
+                txtTotalPrice.setText(String.valueOf(rs.getDouble(5)));
                 txtPDate.setText(String.valueOf(rs.getDate(6)));
-                txtCatId.setText(String.valueOf(rs.getInt(7))); 
-                
+                txtCatId.setText(String.valueOf(rs.getInt(7)));
+
                 showDataInTableFromPro();
             }
         } catch (Exception e) {
@@ -436,36 +435,36 @@ public class CategoryView extends javax.swing.JFrame {
     }//GEN-LAST:event_btnShowActionPerformed
 
     private void btnUpdate1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUpdate1ActionPerformed
-      
+
         Category c = new Category();
         c.setCat_id(Integer.parseInt(txtId.getText()));
         c.setCat_name(txtName.getText());
-        
-        CategoryAndProductUtils.catUpdate(c); 
+
+        CategoryAndProductUtils.catUpdate(c);
         showDataInTableFromCat();
-        
-        lblMsg.setText("Successfully Updated"); 
+
+        lblMsg.setText("Successfully Updated");
     }//GEN-LAST:event_btnUpdate1ActionPerformed
 
     private void btnUpdateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUpdateActionPerformed
-       
+
         Product p = new Product();
         p.setP_id(Integer.parseInt(txtPId.getText()));
         p.setP_name(txtPName.getText());
         p.setP_qty(Integer.parseInt(txtQty.getText()));
         p.setUnit_price(Double.parseDouble(txtUnitPrice.getText()));
         p.setTotal_price(Double.parseDouble(txtTotalPrice.getText()));
-        p.setPurchase_date(new Date()); 
-        
+        p.setPurchase_date(new Date());
+
         Category c = new Category();
         c.setCat_id(Integer.parseInt(txtCatId.getText()));
         p.setCategory(c);
-        
-        CategoryAndProductUtils.proUpdate(p); 
+
+        CategoryAndProductUtils.proUpdate(p);
         showDataInTableFromPro();
-        
+
         lblTMsg.setText("Successfully Updated");
-        
+
         txtPId.setText("");
         txtPName.setText("");
         txtQty.setText("");
@@ -473,7 +472,7 @@ public class CategoryView extends javax.swing.JFrame {
         txtTotalPrice.setText("");
         txtPDate.setText("");
         txtCatId.setText("");
-          
+
     }//GEN-LAST:event_btnUpdateActionPerformed
 
     /**
@@ -551,25 +550,25 @@ public class CategoryView extends javax.swing.JFrame {
     // End of variables declaration//GEN-END:variables
 
     private void showDataInTableFromCat() {
-        
+
         List<Category> list = CategoryAndProductUtils.showAllDataFromCategory();
-        DefaultTableModel model =(DefaultTableModel) tblDisplay1.getModel();
+        DefaultTableModel model = (DefaultTableModel) tblDisplay1.getModel();
         Object[] row = new Object[2];
         model.setRowCount(0);
-        
+
         for (int i = 0; i < list.size(); i++) {
             row[0] = list.get(i).getCat_id();
             row[1] = list.get(i).getCat_name();
-            model.addRow(row); 
+            model.addRow(row);
         }
     }
 
     private void showDataInTableFromPro() {
         List<Product> list1 = CategoryAndProductUtils.showAllDataFromProduct();
-        DefaultTableModel model =(DefaultTableModel) tblDisplay2.getModel();
+        DefaultTableModel model = (DefaultTableModel) tblDisplay2.getModel();
         Object[] row = new Object[7];
         model.setRowCount(0);
-        
+
         for (int i = 0; i < list1.size(); i++) {
             row[0] = list1.get(i).getP_id();
             row[1] = list1.get(i).getP_name();
@@ -578,7 +577,7 @@ public class CategoryView extends javax.swing.JFrame {
             row[4] = list1.get(i).getTotal_price();
             row[5] = list1.get(i).getPurchase_date();
             row[6] = list1.get(i).getCategory().getCat_id();
-            model.addRow(row); 
+            model.addRow(row);
         }
     }
 //    public void dataInsertorUpdateIntoProductAndSummary(Product p) {
