@@ -195,6 +195,8 @@ public class CategoryView extends javax.swing.JFrame {
 
         jLabel4.setText("P_Id");
 
+        txtPId.setText("0");
+
         jLabel5.setText("P_Name");
 
         jLabel6.setText("P_Qty");
