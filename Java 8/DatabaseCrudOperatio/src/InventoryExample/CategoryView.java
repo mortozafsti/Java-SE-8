@@ -378,6 +378,7 @@ public class CategoryView extends javax.swing.JFrame {
         Category c = new Category();
         c.setCat_id(Integer.parseInt(txtCatId.getText()));
 
+        
         Product p = new Product();
         // p.setP_id(Integer.parseInt(txtPId.getText())); 
         p.setP_name(txtPName.getText());
