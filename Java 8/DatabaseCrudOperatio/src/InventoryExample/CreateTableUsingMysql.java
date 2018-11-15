@@ -38,6 +38,17 @@ public class CreateTableUsingMysql {
             Logger.getLogger(CreateTableUsingMysql.class.getName()).log(Level.SEVERE, null,e);
         }
     }
+    public static void dddddddddd(){
+        String sql = "create table product(p_id int(10) primary key auto_increment,p_name varchar(10),"
+                + "p_qty int(10),unit_price double,total_price double,purchase_date Date,cat_id int(10),constraint foreign key"
+                + " (cat_id) references category (cat_id))";
+        try {
+            PreparedStatement ps = conn.prepareStatement(sql);
+            ps.execute();
+        } catch (Exception e) {
+            Logger.getLogger(CreateTableUsingMysql.class.getName()).log(Level.SEVERE, null,e);
+        }
+    }
     public static void main(String[] args) {
         //createTableSum();
         
