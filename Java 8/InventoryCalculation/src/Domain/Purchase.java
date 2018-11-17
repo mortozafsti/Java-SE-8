@@ -12,27 +12,19 @@ public class Purchase {
     private double unitProce;
     private double totalProce;
     private Date purchaseDate;
+    private ProductCategory category;
 
     public Purchase() {
     }
 
-    public Purchase(String productName, String productCode, int qty, double unitProce, double totalProce, Date purchaseDate) {
+    public Purchase(String productName, String productCode, int qty, double unitProce, double totalProce, Date purchaseDate, ProductCategory category) {
         this.productName = productName;
         this.productCode = productCode;
         this.qty = qty;
         this.unitProce = unitProce;
         this.totalProce = totalProce;
         this.purchaseDate = purchaseDate;
-    }
-
-    public Purchase(int id, String productName, String productCode, int qty, double unitProce, double totalProce, Date purchaseDate) {
-        this.id = id;
-        this.productName = productName;
-        this.productCode = productCode;
-        this.qty = qty;
-        this.unitProce = unitProce;
-        this.totalProce = totalProce;
-        this.purchaseDate = purchaseDate;
+        this.category = category;
     }
 
     public int getId() {
@@ -90,6 +82,16 @@ public class Purchase {
     public void setPurchaseDate(Date purchaseDate) {
         this.purchaseDate = purchaseDate;
     }
+
+    public ProductCategory getCategory() {
+        return category;
+    }
+
+    public void setCategory(ProductCategory category) {
+        this.category = category;
+    }
+
+    
     
     
     

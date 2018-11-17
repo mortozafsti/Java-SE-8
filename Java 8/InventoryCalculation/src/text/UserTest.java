@@ -1,12 +1,15 @@
 
 package text;
 
+import Service.ProductCategoryService;
+import Service.PurchaseService;
+import Service.SummaryService;
 import Service.UserService;
 
 public class UserTest {
     public static void main(String[] args) {
-        //UserService.createTable();
+        SummaryService.createTable();
         
-       // User u
+      
     }
 }

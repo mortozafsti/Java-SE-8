@@ -10,7 +10,7 @@ import java.util.logging.Logger;
 public class MyConnection {
     
     private static final String HOST= "jdbc:mysql://localhost:3306";
-    private static final String DBNAME= "Inventorycal";
+    private static final String DBNAME= "inventorycalculation";
     private static final String Url= HOST+"/"+DBNAME;
     private static Connection conn = null;
     
@@ -25,6 +25,6 @@ public class MyConnection {
         return conn;
     }
     public static void main(String[] args) {
-       // getConnection();
+       getConnection();
     }
 }

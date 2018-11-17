@@ -13,6 +13,7 @@ import java.util.logging.Logger;
 public class UserService {
     
     static Connection con = MyConnection.getConnection();
+    
     public static void createTable() {
         String sql = "create table user(id int auto_increment primary key , username varchar(30),  password varchar(30) not null,  firstName varchar(30),  lastName varchar(30),  email varchar(30) not null,  mobile varchar(30) not null, regiDate Date, status bit)";
         try {

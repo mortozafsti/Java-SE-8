@@ -557,6 +557,7 @@ public class CategoryView extends javax.swing.JFrame {
 
         List<Category> list = CategoryAndProductUtils.showAllDataFromCategory();
         DefaultTableModel model = (DefaultTableModel) tblDisplay1.getModel();
+        
         Object[] row = new Object[2];
         model.setRowCount(0);
 
