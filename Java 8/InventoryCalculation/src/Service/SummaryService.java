@@ -37,7 +37,7 @@ public class SummaryService {
             ps.setInt(5, summary.getAvailableqty());
             ps.setDate(6, new java.sql.Date(summary.getLastUpdate().getTime()));
             ps.setInt(7, summary.getPurchase().getId());
-            ps.executeUpdate();
+            ps.executeUpdate(); 
             System.out.println("Data Inserted! in Summary");
         } catch (SQLException ex) {
             Logger.getLogger(SummaryService.class.getName()).log(Level.SEVERE, null, ex);

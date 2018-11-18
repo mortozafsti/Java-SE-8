@@ -168,7 +168,7 @@ public class ProductView extends javax.swing.JFrame {
     private void btnSubmitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSubmitActionPerformed
         
         ProductCategory c = new ProductCategory();
-        
+        c.setId(Integer.parseInt(txtCatId.getText())); 
         Purchase purchase = new Purchase();
         
         
