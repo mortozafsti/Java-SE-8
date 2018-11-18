@@ -8,7 +8,10 @@ import Service.UserService;
 
 public class UserTest {
     public static void main(String[] args) {
-        SummaryService.createTable();
+        //SummaryService.createTable();
+        //ProductCategoryService.CreateTable();
+        //PurchaseService.createTable();
+        //UserService.createTable();
         
       
     }

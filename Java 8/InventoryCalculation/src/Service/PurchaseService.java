@@ -18,7 +18,7 @@ public class PurchaseService {
     static Connection con = MyConnection.getConnection();
 
     public static void createTable() {
-        String sql = "create table purchase(id int auto_increment primary key , productName varchar(30),  productCode varchar(30) not null,  qty int(30),  unitProce double not null,  totalProce double not null,  purchaseDate Date, Cat_id int(11) not null,foreign key (Cat_id) references Category(id))";
+        String sql = "create table purchase(id int auto_increment primary key , productName varchar(30),  productCode varchar(30) not null,  qty int(30),  unitProce double not null,  totalProce double not null,  purchaseDate Date, Cat_id int(11) not null,FOREIGN KEY (Cat_id) REFERENCES Category(id))";
         try {
             PreparedStatement ps = con.prepareStatement(sql);
             ps.execute();
@@ -28,7 +28,7 @@ public class PurchaseService {
     }
 
     public static void insert(Purchase p) {
-        String sql = "insert into purchase (productName ,productCode , qty ,unitProce ,totalProce ,purchaseDate,Cat_id)values(?,?,?,?,?,?,?)";
+        String sql = "insert into purchase (productName,productCode,qty,unitProce,totalProce,purchaseDate,Cat_id)values(?,?,?,?,?,?,?)";
         try {
             PreparedStatement ps = con.prepareStatement(sql);
             ps.setString(1, p.getProductName());
@@ -62,6 +62,7 @@ public class PurchaseService {
                 p.setUnitProce(rs.getDouble(5));
                 p.setTotalProce(rs.getDouble(6));
                 p.setPurchaseDate(rs.getDate(7));
+                
                 ProductCategory c = new ProductCategory();
                 c.setId(rs.getInt(8));
                 p.setCategory(c);
@@ -75,7 +76,7 @@ public class PurchaseService {
     public static void insertMain(Purchase purchase) {
         
         if (purchase != null) {
-            //insert(purchase);
+            insert(purchase);
             
             Purchase p = getpurchaseByProductCode(purchase.getProductCode()); 
             

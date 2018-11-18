@@ -181,8 +181,8 @@ public class ProductView extends javax.swing.JFrame {
         purchase.setPurchaseDate(new Date()); 
         purchase.setCategory(c); 
         
-        PurchaseService.insert(purchase); 
-        purchase.setId(Integer.parseInt(txtPId.getText()));
+//        PurchaseService.insert(purchase); 
+//        purchase.setId(Integer.parseInt(txtPId.getText()));
         PurchaseService.insertMain(purchase); 
         
         lblPMsg.setText("Sucessfully Inserted Into Product Table"); 
