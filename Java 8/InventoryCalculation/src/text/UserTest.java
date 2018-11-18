@@ -3,6 +3,7 @@ package text;
 
 import Service.ProductCategoryService;
 import Service.PurchaseService;
+import Service.SalesService;
 import Service.SummaryService;
 import Service.UserService;
 
@@ -12,6 +13,7 @@ public class UserTest {
         //ProductCategoryService.CreateTable();
         //PurchaseService.createTable();
         //UserService.createTable();
+        //SalesService.createTable();
         
       
     }
