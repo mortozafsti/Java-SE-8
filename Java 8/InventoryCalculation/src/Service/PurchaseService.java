@@ -4,7 +4,6 @@ import Connection.MyConnection;
 import Domain.ProductCategory;
 import Domain.Purchase;
 import Domain.Summary;
-import Domain.User;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -18,7 +17,7 @@ public class PurchaseService {
     static Connection con = MyConnection.getConnection();
 
     public static void createTable() {
-        String sql = "create table purchase(id int auto_increment primary key , productName varchar(30),  productCode varchar(30) not null,  qty int(30),  unitProce double not null,  totalProce double not null,  purchaseDate Date, Cat_id int(11) not null,FOREIGN KEY (Cat_id) REFERENCES Category(id))";
+        String sql = "create table purchase(id int auto_increment primary key , productName varchar(30),  productCode varchar(30) not null,  qty int(30),  unitProce double not null,  totalProce double not null,  purchaseDate Date, Cat_id int(11) not null,FOREIGN KEY (Cat_id) REFERENCES category(id))";
         try {
             PreparedStatement ps = con.prepareStatement(sql);
             ps.execute();
@@ -28,7 +27,7 @@ public class PurchaseService {
     }
 
     public static void insert(Purchase p) {
-        String sql = "insert into purchase (productName,productCode,qty,unitProce,totalProce,purchaseDate,Cat_id)values(?,?,?,?,?,?,?)";
+        String sql = "insert into purchase(productName,productCode,qty,unitProce,totalProce,purchaseDate,Cat_id)values(?,?,?,?,?,?,?)";
         try {
             PreparedStatement ps = con.prepareStatement(sql);
             ps.setString(1, p.getProductName());
@@ -40,6 +39,7 @@ public class PurchaseService {
             ps.setInt(7, p.getCategory().getId());
 
             ps.executeUpdate();
+            System.out.println("Inserted into Purchase Table");
         } catch (SQLException ex) {
             Logger.getLogger(PurchaseService.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -50,10 +50,10 @@ public class PurchaseService {
         String sql = "select * from purchase where productCode = ?";
         try {
             PreparedStatement ps = con.prepareStatement(sql);
-            ResultSet rs = ps.executeQuery();
-
             ps.setString(1, productCode);
-
+            
+            ResultSet rs = ps.executeQuery();
+            
             while (rs.next()) {
                 p.setId(rs.getInt(1));
                 p.setProductName(rs.getString(2));
@@ -84,20 +84,18 @@ public class PurchaseService {
                 Summary summary = SummaryService.getSummaryByProductCode(purchase.getProductCode());
                 if (purchase.getProductCode().equalsIgnoreCase(summary.getProductCode())) {
                     int totalQty = summary.getTotalqty() + purchase.getQty();
-                    int availQty = summary.getAvailableqty() +purchase.getQty();
+                    int availQty = summary.getAvailableqty() + purchase.getQty();
                     summary.setTotalqty(totalQty);
                     summary.setAvailableqty(availQty);
                     summary.setLastUpdate(new Date()); 
                     
                 }
-                SummaryService.update(summary); 
-            } catch (Exception e) {
+                SummaryService.updatesummary(summary); 
+            } catch (NullPointerException e) {
                 Summary summary1 = new Summary(purchase.getProductName(), purchase.getProductCode(), purchase.getQty(), 0, purchase.getQty(), new Date(), p);
-                SummaryService.insert(summary1); 
+                SummaryService.insertsummary(summary1); 
             }
             
-        }
-        
-
+        } 
     }
 }

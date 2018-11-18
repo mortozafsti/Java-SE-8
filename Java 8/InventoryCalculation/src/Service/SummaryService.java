@@ -26,8 +26,8 @@ public class SummaryService {
         }
     }
 
-    public static void insert(Summary summary) {
-        String sql = "insert into summary(productName,productCode, totalQty,soldQty,availableQty,lastUpdate, product_id) values(?,?,?,?,?,?,?)";
+    public static void insertsummary(Summary summary) {
+        String sql = "insert into summary(productName,productCode,totalQty,soldQty,availableQty,lastUpdate,product_id)values(?,?,?,?,?,?,?)";
         try {
             PreparedStatement ps = conn.prepareStatement(sql);
             ps.setString(1, summary.getProductName());
@@ -43,52 +43,25 @@ public class SummaryService {
             Logger.getLogger(SummaryService.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
-public static void update(Summary summary) {
+public static void updatesummary(Summary ss) {
         String sql = "update summary set totalQty=?,soldQty=?,availableQty=?,lastUpdate=? where productCode=?";
         try {
             PreparedStatement ps = conn.prepareStatement(sql);
-            ps.setInt(1, summary.getTotalqty());
-            ps.setInt(2, summary.getSoldqty());
-            ps.setInt(3, summary.getAvailableqty());
-            ps.setDate(4, new java.sql.Date(summary.getLastUpdate().getTime()));
-            ps.setString(5, summary.getProductCode());
+            ps.setInt(1, ss.getTotalqty());
+            ps.setInt(2, ss.getSoldqty());
+            ps.setInt(3, ss.getAvailableqty());
+            ps.setDate(4, new java.sql.Date(ss.getLastUpdate().getTime()));
+            ps.setString(5, ss.getProductCode());
 
             ps.executeUpdate();
             System.out.println("Data Updated in Summary!");
         } catch (SQLException ex) {
             Logger.getLogger(SummaryService.class.getName()).log(Level.SEVERE, null, ex);
         }
-    }
-    public static Purchase getpurchaseByProductCode(String productCode) {
-        Purchase p = new Purchase();
-        String sql = "select * from purchase where productCode = ?";
-        try {
-            PreparedStatement ps = conn.prepareStatement(sql);
-            ResultSet rs = ps.executeQuery();
-
-            ps.setString(1, productCode);
-
-            while (rs.next()) {
-                p.setId(rs.getInt(1));
-                p.setProductName(rs.getString(2));
-                p.setProductCode(rs.getString(3));
-                p.setQty(rs.getInt(4));
-                p.setUnitProce(rs.getDouble(5));
-                p.setTotalProce(rs.getDouble(6));
-                p.setPurchaseDate(rs.getDate(7));
-                ProductCategory c = new ProductCategory();
-                c.setId(rs.getInt(8));
-                p.setCategory(c);
-
-            }
-        } catch (Exception e) {
-        }
-        return p;
-    }
-
+}
     public static Summary getSummaryByProductCode(String productCode) {
         Summary summary = new Summary();
-        String sql = "select * from summary where productCode=?";
+        String sql = "select * from summary where productCode = ? ";
         try {
             PreparedStatement ps = conn.prepareStatement(sql);
             ps.setString(1, productCode);

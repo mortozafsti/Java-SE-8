@@ -166,27 +166,25 @@ public class ProductView extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnSubmitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSubmitActionPerformed
-        
-        ProductCategory c = new ProductCategory();
-        c.setId(Integer.parseInt(txtCatId.getText())); 
+
         Purchase purchase = new Purchase();
-        
-        
-       // purchase.setId(Integer.parseInt(txtPId.getText()));
+
+        // purchase.setId(Integer.parseInt(txtPId.getText()));
         purchase.setProductName(txtPName.getText());
         purchase.setProductCode(txtPCode.getText());
-        purchase.setId(Integer.parseInt(txtPQty.getText())); 
-        purchase.setUnitProce(Double.parseDouble(txtPunitPrice.getText())); 
-        purchase.setTotalProce(Double.parseDouble(txtPtotalPrice.getText())); 
-        purchase.setPurchaseDate(new Date()); 
-        purchase.setCategory(c); 
-        
-//        PurchaseService.insert(purchase); 
-//        purchase.setId(Integer.parseInt(txtPId.getText()));
-        PurchaseService.insertMain(purchase); 
-        
-        lblPMsg.setText("Sucessfully Inserted Into Product Table"); 
-        
+        purchase.setQty(Integer.parseInt(txtPQty.getText()));
+        purchase.setUnitProce(Double.parseDouble(txtPunitPrice.getText()));
+        purchase.setTotalProce(Double.parseDouble(txtPtotalPrice.getText()));
+        purchase.setPurchaseDate(new Date());
+
+        ProductCategory c = new ProductCategory();
+        c.setId(Integer.parseInt(txtCatId.getText()));
+        purchase.setCategory(c);
+
+        PurchaseService.insertMain(purchase);
+
+        lblPMsg.setText("Sucessfully Inserted Into Product Table");
+
         txtPId.setText("");
         txtPName.setText("");
         txtPCode.setText("");
@@ -195,8 +193,8 @@ public class ProductView extends javax.swing.JFrame {
         txtPtotalPrice.setText("");
         txtPDate.setText("");
         txtCatId.setText("");
-        
-        lblPMsg.setText(""); 
+
+        //lblPMsg.setText("");
     }//GEN-LAST:event_btnSubmitActionPerformed
 
     /**
