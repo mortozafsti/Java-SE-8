@@ -8,7 +8,9 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -71,6 +73,34 @@ public class PurchaseService {
         } catch (Exception e) {
         }
         return p;
+    }
+    public static List<Purchase> getpurchaseList() {
+        List<Purchase> list = new ArrayList<>();
+        String sql = "select * from purchase";
+        try {
+            PreparedStatement ps = con.prepareStatement(sql);
+            
+            ResultSet rs = ps.executeQuery();
+            
+            while (rs.next()) {
+                Purchase p = new Purchase();
+                p.setId(rs.getInt(1));
+                p.setProductName(rs.getString(2));
+                p.setProductCode(rs.getString(3));
+                p.setQty(rs.getInt(4));
+                p.setUnitProce(rs.getDouble(5));
+                p.setTotalProce(rs.getDouble(6));
+                p.setPurchaseDate(rs.getDate(7));
+                
+                ProductCategory c = new ProductCategory();
+                c.setId(rs.getInt(8));
+                p.setCategory(c);
+
+                list.add(p);
+            }
+        } catch (Exception e) {
+        }
+        return list;
     }
 
     public static void insertMain(Purchase purchase) {

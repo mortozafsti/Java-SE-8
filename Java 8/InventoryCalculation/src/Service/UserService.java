@@ -41,27 +41,28 @@ public class UserService {
             Logger.getLogger(UserService.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
-    public static User getUserByName(String username, String password) {
-        User user =null;
-        String sql ="select * from user where username = ? and password = ?";
+    public static User getUserByName(String username, String password,boolean status){
+        User user = new User();
+        String sql ="select * from user where username = ? and password = ? and status = ?";
         try {
             PreparedStatement ps = con.prepareStatement(sql);
-            ResultSet rs = ps.executeQuery();
             
             ps.setString(1,username);
             ps.setString(2,password);
-            
+            ps.setBoolean(3,status);
+            ResultSet rs = ps.executeQuery();
             while (rs.next()) {
-                user = new User();
+                //user = new User();
                 user.setId(rs.getInt(1)); 
                 user.setUsername(rs.getString(2)); 
                 user.setPassword(rs.getString(3)); 
-                user.setFirstName(rs.getString(4)); 
-                user.setLastName(rs.getString(5)); 
-                user.setEmail(rs.getString(6)); 
-                user.setMobile(rs.getString(7)); 
-                user.setRegiDate(rs.getDate(8)); 
-                user.setStatus(rs.getBoolean(9)); 
+                user.setUserType(rs.getString(4));
+                user.setFirstName(rs.getString(5)); 
+                user.setLastName(rs.getString(6)); 
+                user.setEmail(rs.getString(7)); 
+                user.setMobile(rs.getString(8)); 
+                user.setRegiDate(rs.getDate(9)); 
+                user.setStatus(rs.getBoolean(10)); 
                 
             }
         } catch (Exception e) {

@@ -5,7 +5,7 @@
  */
 package View;
 
-import Domain.MenuFormAdmin;
+import Util.MenuFormAdmin;
 import Domain.User;
 import Service.UserService;
 import java.util.Date;

@@ -7,6 +7,8 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -83,4 +85,32 @@ public static void updatesummary(Summary ss) {
         }
         return summary;
     }
+    public static List<Summary> getSummaryList() {
+        List<Summary> list = new ArrayList<>();
+        String sql = "select * from summary";
+        try {
+            PreparedStatement ps = conn.prepareStatement(sql);
+            ResultSet rs = ps.executeQuery();
+
+            while (rs.next()) {
+                Summary summary = new Summary();
+                summary.setId(rs.getInt(1));
+                summary.setProductName(rs.getString(2));
+                summary.setProductCode(rs.getString(3));
+                summary.setTotalqty(rs.getInt(4));
+                summary.setSoldqty(rs.getInt(5));
+                summary.setAvailableqty(rs.getInt(6));
+                summary.setLastUpdate(rs.getDate(7));
+                Purchase p = new Purchase();
+                p.setId(rs.getInt(8));
+                summary.setPurchase(p);
+                
+                list.add(summary);
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(UserService.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return list;
+    }
+    
 }

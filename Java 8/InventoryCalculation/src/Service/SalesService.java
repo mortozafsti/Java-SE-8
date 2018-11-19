@@ -2,12 +2,15 @@
 package Service;
 
 import Connection.MyConnection;
+import Domain.Purchase;
 import Domain.Sales;
 import Domain.Summary;
 import java.sql.Connection;
-import java.sql.Date;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -59,5 +62,35 @@ public class SalesService {
                  System.out.println("You do not have Sufficient Product");
              }
         }
+    }
+    public static List<Sales> getSalesByList() {
+        List<Sales> list = new ArrayList<>();
+        String sql = "select * from sales";
+        try {
+            PreparedStatement ps = conn.prepareStatement(sql);
+            ResultSet rs = ps.executeQuery();
+            while (rs.next()) {
+                Sales sales = new Sales();
+                sales.setId(rs.getInt(1));
+                sales.setProductName(rs.getString(2));
+                sales.setProductCode(rs.getString(3));
+                sales.setQty(rs.getInt(4));
+                sales.setUnitPrice(rs.getDouble(5));
+                sales.setTotalPrice(rs.getDouble(6));
+                sales.setSalesDate(rs.getDate(7)); 
+                
+                Purchase p = new Purchase();
+                p.setId(rs.getInt(8));
+                sales.setPurchase(p); 
+                
+                list.add(sales);
+                
+            }
+            
+           
+        } catch (SQLException ex) {
+            Logger.getLogger(SalesService.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return list;
     }
 }
