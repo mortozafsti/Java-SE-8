@@ -8,6 +8,7 @@ public class User {
     private int id;
     private String username;
     private String password;
+    private String userType;
     private String firstName;
     private String lastName;
     private String email;
@@ -18,10 +19,10 @@ public class User {
     public User() {
     }
 
-    
-    public User(String username, String password, String firstName, String lastName, String email, String mobile, Date regiDate, boolean status) {
+    public User(String username, String password, String userType, String firstName, String lastName, String email, String mobile, Date regiDate, boolean status) {
         this.username = username;
         this.password = password;
+        this.userType = userType;
         this.firstName = firstName;
         this.lastName = lastName;
         this.email = email;
@@ -52,6 +53,14 @@ public class User {
 
     public void setPassword(String password) {
         this.password = password;
+    }
+
+    public String getUserType() {
+        return userType;
+    }
+
+    public void setUserType(String userType) {
+        this.userType = userType;
     }
 
     public String getFirstName() {
@@ -101,6 +110,8 @@ public class User {
     public void setStatus(boolean status) {
         this.status = status;
     }
+
+    
     
     
     

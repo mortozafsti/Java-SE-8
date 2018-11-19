@@ -24,7 +24,7 @@ public class MyConnection {
         }
         return conn;
     }
-//    public static void main(String[] args) {
-//       getConnection();
-//    }
+    public static void main(String[] args) {
+       getConnection();
+    }
 }

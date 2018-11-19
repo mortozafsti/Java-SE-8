@@ -15,25 +15,26 @@ public class UserService {
     static Connection con = MyConnection.getConnection();
     
     public static void createTable() {
-        String sql = "create table user(id int auto_increment primary key , username varchar(30),  password varchar(30) not null,  firstName varchar(30),  lastName varchar(30),  email varchar(30) not null,  mobile varchar(30) not null, regiDate Date, status bit)";
+        String sql = "create table user(id int auto_increment primary key , username varchar(30),  password varchar(30) not null,userType varchar(20) not null, firstName varchar(30),  lastName varchar(30),  email varchar(30) not null,  mobile varchar(30) not null, regiDate Date, status bit)";
         try {
             PreparedStatement ps = con.prepareStatement(sql);
             ps.execute();
         } catch (Exception e) {
         }
     }
-    public  void insert(User user) {
-        String sql = "insert into user (username ,  password ,  firstName ,  lastName ,  email ,  mobile   , regiDate , status )values(?,?,?,?,?,?,?,?)";
+    public static void insert(User user) {
+        String sql = "insert into user (username ,  password ,userType,  firstName ,  lastName ,  email ,  mobile   , regiDate , status )values(?,?,?,?,?,?,?,?,?)";
         try {
             PreparedStatement ps = con.prepareStatement(sql);
             ps.setString(1, user.getUsername());
             ps.setString(2, user.getPassword());
-            ps.setString(3, user.getFirstName());
-            ps.setString(4, user.getLastName());
-            ps.setString(5, user.getEmail());
-            ps.setString(6, user.getMobile());
-            ps.setDate(7, new java.sql.Date(user.getRegiDate().getTime()));
-            ps.setBoolean(8, user.isStatus());
+            ps.setString(3, user.getUserType());
+            ps.setString(4, user.getFirstName());
+            ps.setString(5, user.getLastName());
+            ps.setString(6, user.getEmail());
+            ps.setString(7, user.getMobile());
+            ps.setDate(8, new java.sql.Date(user.getRegiDate().getTime()));
+            ps.setBoolean(9, user.isStatus());
             
             ps.executeUpdate();
         } catch (SQLException ex) {

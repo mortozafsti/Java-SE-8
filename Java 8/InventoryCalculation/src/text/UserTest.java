@@ -10,10 +10,10 @@ import Service.UserService;
 public class UserTest {
     public static void main(String[] args) {
         //SummaryService.createTable();
-        //ProductCategoryService.CreateTable();
-        //PurchaseService.createTable();
-        //UserService.createTable();
-        //SalesService.createTable();
+//        ProductCategoryService.CreateTable();
+//        PurchaseService.createTable();
+        UserService.createTable();
+//        SalesService.createTable();
         
       
     }
