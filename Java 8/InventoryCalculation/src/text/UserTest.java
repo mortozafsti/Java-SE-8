@@ -12,7 +12,7 @@ public class UserTest {
         //SummaryService.createTable();
 //        ProductCategoryService.CreateTable();
 //        PurchaseService.createTable();
-        UserService.createTable();
+        //UserService.createTable();
 //        SalesService.createTable();
         
       
