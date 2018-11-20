@@ -4,6 +4,7 @@ package Util;
 import View.DashboardView;
 import View.ProductView;
 import View.SalesView;
+import View.UserReportView;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import javax.swing.JFrame;
@@ -59,20 +60,53 @@ public class MenuFormAdmin {
                 new DashboardView().setVisible(true); 
             }
         });
+        
+        
+        
+        JMenu report = new JMenu("Report");
+        JMenuItem purchaseR = new JMenuItem("Purchase Report");
+        purchaseR.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+               new SalesView().setVisible(true); 
+            }
+        });
+        JMenuItem salesR = new JMenuItem("Sales Report");
+        salesR.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+               
+            }
+        });
+        JMenuItem userR = new JMenuItem("User Report");
+        userR.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+               new UserReportView().setVisible(true); 
+            }
+        });
+        
+        
+        JMenu help = new JMenu("Help");
+        JMenu signout = new JMenu("Sign Out");
+        
         file.add(dashboard);
         file.add(category);
         file.add(purchase);
         file.add(sales);
         file.add(summary);
         file.add(user);
+        file.add(report);
         
-        
-        JMenu help = new JMenu("Help");
-        JMenu signout = new JMenu("Sign Out");
+        report.add(purchaseR);
+        report.add(salesR);
+        report.add(userR);
         
         menubar.add(file);
+        menubar.add(report);
         menubar.add(help);
         menubar.add(signout);
+        
         
         f.setJMenuBar(menubar); 
         
