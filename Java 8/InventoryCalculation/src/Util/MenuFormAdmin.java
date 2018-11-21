@@ -3,6 +3,7 @@ package Util;
 
 import View.DashboardView;
 import View.ProductView;
+import View.PurchaseReportView;
 import View.SalesView;
 import View.UserReportView;
 import java.awt.event.ActionEvent;
@@ -68,14 +69,14 @@ public class MenuFormAdmin {
         purchaseR.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-               new SalesView().setVisible(true); 
+               new PurchaseReportView().setVisible(true); 
             }
         });
         JMenuItem salesR = new JMenuItem("Sales Report");
         salesR.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-               
+              // new SalesView().setVisible(true); 
             }
         });
         JMenuItem userR = new JMenuItem("User Report");

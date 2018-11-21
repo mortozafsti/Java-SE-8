@@ -2,6 +2,8 @@
 package Service;
 
 import Connection.MyConnection;
+import Domain.ProductCategory;
+import Domain.Purchase;
 import Domain.User;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -98,5 +100,37 @@ public class ReportService {
             Logger.getLogger(ReportService.class.getName()).log(Level.SEVERE, null, ex);
         }
         return list; 
-    } 
+    }
+    
+    /////////////////////////////Purchase report//////////////////////////////////
+    
+    public static List<Purchase> getProductListByCategory(int categoryId){ 
+        List<Purchase> plist = new ArrayList<>();
+        String sql = "select * from purchase p,category c where p.Cat_id=c.id and Cat_id = ?";
+        try {
+            PreparedStatement ps = conn.prepareStatement(sql);
+            ps.setInt(1, categoryId);
+            ResultSet rs = ps.executeQuery();
+            while (rs.next()) {
+                Purchase purchase = new Purchase();
+                purchase.setId(rs.getInt(1));
+                purchase.setProductName(rs.getString(2)); 
+                purchase.setProductCode(rs.getString(3)); 
+                purchase.setQty(rs.getInt(4));
+                purchase.setUnitProce(rs.getDouble(5));
+                purchase.setTotalProce(rs.getDouble(6));
+                purchase.setPurchaseDate(rs.getDate(7));
+                ProductCategory pc = new ProductCategory();
+                pc.setId(rs.getInt(8));
+                pc.setName(rs.getString("name")); 
+                purchase.setCategory(pc); 
+                
+                plist.add(purchase);
+                
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(ReportService.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return plist;
+    }
 }
