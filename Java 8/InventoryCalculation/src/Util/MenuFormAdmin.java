@@ -24,6 +24,7 @@ public class MenuFormAdmin {
             @Override
             public void actionPerformed(ActionEvent e) {
                 new DashboardView().setVisible(true); 
+                f.setVisible(false); 
             }
         });
         JMenuItem category = new JMenuItem("Category");
@@ -31,6 +32,7 @@ public class MenuFormAdmin {
             @Override
             public void actionPerformed(ActionEvent e) {
                 new DashboardView().setVisible(true); 
+                f.setVisible(false);
             }
         });
         JMenuItem purchase = new JMenuItem("Purchase");
@@ -38,6 +40,7 @@ public class MenuFormAdmin {
             @Override
             public void actionPerformed(ActionEvent e) {
                 new ProductView().setVisible(true); 
+                f.setVisible(false);
             }
         });
         JMenuItem sales = new JMenuItem("Sales");
@@ -45,6 +48,7 @@ public class MenuFormAdmin {
             @Override
             public void actionPerformed(ActionEvent e) {
                 new SalesView().setVisible(true); 
+                f.setVisible(false);
             }
         });
         JMenuItem summary = new JMenuItem("Summary");
@@ -52,6 +56,7 @@ public class MenuFormAdmin {
             @Override
             public void actionPerformed(ActionEvent e) {
                 new DashboardView().setVisible(true); 
+                f.setVisible(false);
             }
         });
         JMenuItem user = new JMenuItem("User");
@@ -59,6 +64,7 @@ public class MenuFormAdmin {
             @Override
             public void actionPerformed(ActionEvent e) {
                 new DashboardView().setVisible(true); 
+                f.setVisible(false);
             }
         });
         
@@ -70,6 +76,7 @@ public class MenuFormAdmin {
             @Override
             public void actionPerformed(ActionEvent e) {
                new PurchaseReportView().setVisible(true); 
+               f.setVisible(false);
             }
         });
         JMenuItem salesR = new JMenuItem("Sales Report");
@@ -84,6 +91,7 @@ public class MenuFormAdmin {
             @Override
             public void actionPerformed(ActionEvent e) {
                new UserReportView().setVisible(true); 
+               f.setVisible(false);
             }
         });
         
