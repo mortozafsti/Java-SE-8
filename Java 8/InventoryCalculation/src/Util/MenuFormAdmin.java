@@ -72,6 +72,7 @@ public class MenuFormAdmin {
         
         JMenu report = new JMenu("Report");
         JMenuItem purchaseR = new JMenuItem("Purchase Report");
+        
         purchaseR.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
