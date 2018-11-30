@@ -33,7 +33,13 @@ public class MenuForManager {
             }
         });
         JMenuItem addmember = new JMenuItem("Add Member");
-
+        addmember.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                   new UserView().setVisible(true);
+                   f.setVisible(false); 
+            }
+        });
         JMenu report = new JMenu("Report");
         JMenu help = new JMenu("Help");
         JMenu signout = new JMenu("SignOut");
