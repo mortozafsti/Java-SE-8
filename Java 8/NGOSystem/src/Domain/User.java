@@ -1,7 +1,7 @@
 
 package Domain;
 
-import java.sql.Date;
+import java.util.Date;
 
 public class User {
     
@@ -13,7 +13,7 @@ public class User {
     private String mobileno;
     private String nid;
     private String address;
-    private int admitfee;
+    private String admitfee;
     private Date regiDate;
     private boolean status;
 
@@ -26,7 +26,7 @@ public class User {
         this.status = status;
     }
 
-    public User(String username, String password, String usertype, String gender, String mobileno, String nid, String address, int admitfee, Date regiDate, boolean status) {
+    public User(String username, String password, String usertype, String gender, String mobileno, String nid, String address, String admitfee, Date regiDate, boolean status) {
         this.username = username;
         this.password = password;
         this.usertype = usertype;
@@ -103,11 +103,11 @@ public class User {
         this.address = address;
     }
 
-    public int getAdmitfee() {
+    public String getAdmitfee() {
         return admitfee;
     }
 
-    public void setAdmitfee(int admitfee) {
+    public void setAdmitfee(String admitfee) {
         this.admitfee = admitfee;
     }
 

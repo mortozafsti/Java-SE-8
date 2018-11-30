@@ -89,6 +89,11 @@ public class UserView extends javax.swing.JFrame {
         });
 
         btnSignIn.setText("Sign In");
+        btnSignIn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnSignInActionPerformed(evt);
+            }
+        });
 
         tblUdisplay.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -205,6 +210,10 @@ public class UserView extends javax.swing.JFrame {
         lblUMsg.setText("Registration  Success"); 
         
     }//GEN-LAST:event_btnSignUpActionPerformed
+
+    private void btnSignInActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSignInActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnSignInActionPerformed
 
     /**
      * @param args the command line arguments
