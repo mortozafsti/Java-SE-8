@@ -7,6 +7,7 @@ package View;
 
 import Domain.User;
 import Service.UserService;
+import Utils.MenuForManager;
 import java.util.Date;
 
 /**
@@ -20,6 +21,7 @@ public class UserView extends javax.swing.JFrame {
      */
     public UserView() {
         initComponents();
+        MenuForManager.menuManager(this);
     }
 
     /**

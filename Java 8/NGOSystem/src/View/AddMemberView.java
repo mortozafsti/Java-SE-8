@@ -8,6 +8,7 @@ package View;
 import Domain.AddMember;
 import Service.AddMemberService;
 import Service.UserService;
+import Utils.MenuForManager;
 import java.util.Date;
 
 /**
@@ -21,6 +22,7 @@ public class AddMemberView extends javax.swing.JFrame {
      */
     public AddMemberView() {
         initComponents();
+        MenuForManager.menuManager(this);
     }
 
     /**
@@ -59,7 +61,7 @@ public class AddMemberView extends javax.swing.JFrame {
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel1.setText("User Details");
+        jLabel1.setText("Add Member Details");
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);

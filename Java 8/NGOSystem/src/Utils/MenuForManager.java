@@ -1,5 +1,6 @@
 package Utils;
 
+import View.AddMemberView;
 import View.MainView;
 import View.UserView;
 import java.awt.event.ActionEvent;
@@ -36,7 +37,7 @@ public class MenuForManager {
         addmember.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                   new UserView().setVisible(true);
+                   new AddMemberView().setVisible(true);
                    f.setVisible(false); 
             }
         });
