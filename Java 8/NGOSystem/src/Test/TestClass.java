@@ -9,9 +9,9 @@ import Service.UserService;
 public class TestClass {
     public static void main(String[] args) {
         
-       // MyConnection.getConnectin();
-        //UserService.createTable();
-        //AddMemberService.createTableAddMember();
-        DailyCollectionService.createTableDailyCollection();
+        //MyConnection.getConnectin();
+//        UserService.createTable();
+       //AddMemberService.createTableAddMember();
+       // DailyCollectionService.createTableDailyCollection();
     }
 }

@@ -5,6 +5,7 @@ import java.util.Date;
 public class AddMember {
 
     private int id;
+    private String mcode;
     private String name;
     private String gender;
     private String mobileno;
@@ -16,7 +17,8 @@ public class AddMember {
     public AddMember() {
     }
 
-    public AddMember(String name, String gender, String mobileno, String nid, String address, String admitfee, Date regiDate) {
+    public AddMember(String mcode, String name, String gender, String mobileno, String nid, String address, String admitfee, Date regiDate) {
+        this.mcode = mcode;
         this.name = name;
         this.gender = gender;
         this.mobileno = mobileno;
@@ -26,8 +28,9 @@ public class AddMember {
         this.regiDate = regiDate;
     }
 
-    public AddMember(int id, String name, String gender, String mobileno, String nid, String address, String admitfee, Date regiDate) {
+    public AddMember(int id, String mcode, String name, String gender, String mobileno, String nid, String address, String admitfee, Date regiDate) {
         this.id = id;
+        this.mcode = mcode;
         this.name = name;
         this.gender = gender;
         this.mobileno = mobileno;
@@ -43,6 +46,14 @@ public class AddMember {
 
     public void setId(int id) {
         this.id = id;
+    }
+
+    public String getMcode() {
+        return mcode;
+    }
+
+    public void setMcode(String mcode) {
+        this.mcode = mcode;
     }
 
     public String getName() {
@@ -100,5 +111,7 @@ public class AddMember {
     public void setRegiDate(Date regiDate) {
         this.regiDate = regiDate;
     }
+
+    
 
 }

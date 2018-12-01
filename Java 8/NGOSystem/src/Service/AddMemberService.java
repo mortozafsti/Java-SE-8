@@ -2,7 +2,6 @@ package Service;
 
 import Connection.MyConnection;
 import Domain.AddMember;
-import Domain.User;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -15,7 +14,7 @@ public class AddMemberService {
     static Connection conn = MyConnection.getConnectin();
 
     public static void createTableAddMember() {
-        String sql = "create table member(id int auto_increment primary key,username varchar(30) not null,"
+        String sql = "create table member(id int auto_increment primary key,mcode varchar(10) unique not null, username varchar(30) not null,"
                 + "gender varchar(30) not null,mobileno varchar(11) not null,nid varchar(30) not null,"
                 + "address varchar(30) not null,admitfee int(30) not null,regiDate Date)";
         try {
@@ -27,22 +26,37 @@ public class AddMemberService {
         }
     }
     public static void insertMember(AddMember member) {
-        String sql = "insert into member(username,gender,mobileno,nid,address,admitfee,regiDate)values(?,?,?,?,?,?,?)";
+        String sql = "insert into member(mcode,username,gender,mobileno,nid,address,admitfee,regiDate)values(?,?,?,?,?,?,?,?)";
         try {
             PreparedStatement ps = conn.prepareStatement(sql);
-            ps.setString(1, member.getName());
-            ps.setString(2, member.getGender());
-            ps.setString(3, member.getMobileno());
-            ps.setString(4, member.getNid());
-            ps.setString(5, member.getAddress());
-            ps.setString(6, member.getAdmitfee());
-            ps.setDate(7, new java.sql.Date(member.getRegiDate().getTime()));
+            ps.setString(1, member.getMcode());
+            ps.setString(2, member.getName());
+            ps.setString(3, member.getGender());
+            ps.setString(4, member.getMobileno());
+            ps.setString(5, member.getNid());
+            ps.setString(6, member.getAddress());
+            ps.setString(7, member.getAdmitfee());
+            ps.setDate(8, new java.sql.Date(member.getRegiDate().getTime()));
 
             ps.executeUpdate();
             System.out.println("Successfully Inserted into Member");
         } catch (SQLException ex) {
             Logger.getLogger(AddMemberService.class.getName()).log(Level.SEVERE, null, ex);
         }
+    }
+    public static ResultSet getDataById(int id) {
+        ResultSet rs = null;
+        String sql = "select * from member where id = ?";
+        try {
+            PreparedStatement ps = conn.prepareStatement(sql);
+            ps.setInt(1, id);
+            
+            rs = ps.executeQuery();
+            System.out.println("Show Correctly");
+        } catch (SQLException ex) {
+            Logger.getLogger(DailyCollectionService.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return rs;
     }
 //    public static User getUserByName(String username,String password,boolean status) {
 //        User user = new User();

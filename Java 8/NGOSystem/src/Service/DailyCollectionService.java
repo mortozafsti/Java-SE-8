@@ -4,6 +4,7 @@ import Connection.MyConnection;
 import Domain.DailyCollection;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -14,7 +15,8 @@ public class DailyCollectionService {
 
     public static void createTableDailyCollection() {
         String sql = "create table dailyCollection(id int auto_increment primary key,name varchar(30) not null,"
-                + "gender varchar(30) not null,address varchar(30) not null,Amount varchar(30) not null, collectionDate Date)";
+                + "gender varchar(30) not null,address varchar(30) not null,Amount varchar(30) not null, collectionDate Date,"
+                + "m_code varchar(10) not null,foreign key(m_code) references member(mcode))";
         try {
             PreparedStatement ps = conn.prepareStatement(sql);
             ps.execute();
@@ -24,7 +26,7 @@ public class DailyCollectionService {
         }
     }
     public static void insertCollection(DailyCollection collection) {
-        String sql = "insert into dailyCollection(name,gender,address,Amount,collectionDate)values(?,?,?,?,?)";
+        String sql = "insert into dailyCollection(name,gender,address,Amount,collectionDate,m_code)values(?,?,?,?,?,?)";
         try {
             PreparedStatement ps = conn.prepareStatement(sql);
             ps.setString(1, collection.getName());
@@ -32,6 +34,7 @@ public class DailyCollectionService {
             ps.setString(3, collection.getAddress());
             ps.setString(4, collection.getCollectionAmount());
             ps.setDate(5, new java.sql.Date(collection.getCollectionDate().getTime()));
+            ps.setString(6, collection.getAddMember().getMcode());
 
             ps.executeUpdate();
             System.out.println("Successfully Inserted into Collection");
@@ -39,6 +42,7 @@ public class DailyCollectionService {
             Logger.getLogger(DailyCollectionService.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
+    
 //    public static User getUserByName(String username,String password,boolean status) {
 //        User user = new User();
 //        String sql = "select * from user where username= ? and password= ? and status=? ";
