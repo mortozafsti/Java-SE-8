@@ -251,11 +251,11 @@ public class DailyColllectionView extends javax.swing.JFrame {
     private void btnsaveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnsaveActionPerformed
         
         AddMember addMember = new AddMember();
-        addMember.setId(Integer.parseInt(txtDMcode.getText())); 
+        addMember.setMcode(txtDMcode.getText()); 
         
         
-        DailyCollection dailyCollection = new DailyCollection(txtname.getText(), txtgender.getText(), txtaddress.getText(),txtamount.getText(), new Date());
-        dailyCollection.setAddMember(addMember); 
+        DailyCollection dailyCollection = new DailyCollection(txtname.getText(), txtgender.getText(), txtaddress.getText(),txtamount.getText(), new Date(),addMember);
+        //dailyCollection.setAddMember(addMember); 
         DailyCollectionService.insertCollection(dailyCollection);
         lbldMsg.setText("Successfully Added into Collection"); 
     }//GEN-LAST:event_btnsaveActionPerformed
@@ -269,7 +269,7 @@ public class DailyColllectionView extends javax.swing.JFrame {
                 txtname.setText(rs.getString(3)); 
                 txtgender.setText(rs.getString(4)); 
                 txtaddress.setText(rs.getString(7)); 
-                //txtamount.setText(rs.getString(5)); 
+                txtDMcode.setText(rs.getString(2)); 
                 
                 
             }
