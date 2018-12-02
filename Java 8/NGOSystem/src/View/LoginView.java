@@ -129,7 +129,7 @@ public class LoginView extends javax.swing.JFrame {
                 } else {
                     logedIn = "Hello " + user.getUsername()+ " You are LogedIn as Field Assistant";
                     this.setVisible(false);
-                    new MainView().setVisible(true);
+                    new FieldAssistant().setVisible(true);
                 }
             } else {
                 lbllMsg.setText("User or Password is Worng");
