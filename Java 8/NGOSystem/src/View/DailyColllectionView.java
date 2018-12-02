@@ -265,15 +265,17 @@ public class DailyColllectionView extends javax.swing.JFrame {
         try {
             ResultSet rs = AddMemberService.getDataById(Integer.parseInt(txtId.getText()));
             while (rs.next()) {
-                txtId.setText(String.valueOf(rs.getInt(1))); 
-                txtname.setText(rs.getString(3)); 
-                txtgender.setText(rs.getString(4)); 
-                txtaddress.setText(rs.getString(7)); 
-                txtDMcode.setText(rs.getString(2)); 
+                txtId.setText(String.valueOf(rs.getInt(1)));
+                txtDMcode.setText(rs.getString(7)); 
+                txtname.setText(rs.getString(2)); 
+                txtgender.setText(rs.getString(3)); 
+                txtaddress.setText(rs.getString(4)); 
+                
                 
                 
             }
         } catch (Exception e) {
+            
         }
     }//GEN-LAST:event_btnsearchActionPerformed
 
