@@ -14,7 +14,7 @@
     <body>
         <h1>Hello World!</h1>
         <h1>G M Mortoza Ahmed</h1>
-        <h1>Md Mostafizur Rahaman</h1>
+        <h1>Md  Rahaman</h1>
         <%! 
              
         %>
