@@ -13,10 +13,14 @@
     </head>
     <body>
         <h1>Hello World!</h1>
+         <%-- This is a JSP comment --%>
         <h1>G M Mortoza Ahmed</h1>
         <h1>Md  Rahaman</h1>
-        <%! 
-             
-        %>
+  
+             <%-- This is a JSP comment --%>
+              <%! int x = 10; %>
+              <%= "Wel Com"+x %>
+
+        
     </body>
 </html>
