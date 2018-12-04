@@ -12,9 +12,25 @@ public class DailyCollection {
     private String collectionAmount;
     private Date collectionDate;
     
+    private int day;
+    private int month;
+    private int year;
+    
     private AddMember addMember;
 
     public DailyCollection() {
+    }
+
+    public DailyCollection(String name, String gender, String address, String collectionAmount, Date collectionDate, int day, int month, int year, AddMember addMember) {
+        this.name = name;
+        this.gender = gender;
+        this.address = address;
+        this.collectionAmount = collectionAmount;
+        this.collectionDate = collectionDate;
+        this.day = day;
+        this.month = month;
+        this.year = year;
+        this.addMember = addMember;
     }
 
     public DailyCollection(String name, String gender, String address,String collectionAmount, Date collectionDate) {
@@ -98,6 +114,30 @@ public class DailyCollection {
 
     public void setCollectionAmount(String collectionAmount) {
         this.collectionAmount = collectionAmount;
+    }
+
+    public int getDay() {
+        return day;
+    }
+
+    public void setDay(int day) {
+        this.day = day;
+    }
+
+    public int getMonth() {
+        return month;
+    }
+
+    public void setMonth(int month) {
+        this.month = month;
+    }
+
+    public int getYear() {
+        return year;
+    }
+
+    public void setYear(int year) {
+        this.year = year;
     }
     
 }

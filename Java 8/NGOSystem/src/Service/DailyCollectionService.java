@@ -16,7 +16,7 @@ public class DailyCollectionService {
     public static void createTableDailyCollection() {
         String sql = "create table dailyCollection(id int auto_increment primary key,name varchar(30) not null,"
                 + "gender varchar(30) not null,address varchar(30) not null,Amount varchar(30) not null, collectionDate Date,"
-                + "m_code varchar(10) not null,foreign key(m_code) references member(mcode))";
+                + "m_code varchar(10) not null,foreign key(m_code) references member(mcode),day int(11),month int(11),year int(11))";
         try {
             PreparedStatement ps = conn.prepareStatement(sql);
             ps.execute();
@@ -26,7 +26,7 @@ public class DailyCollectionService {
         }
     }
     public static void insertCollection(DailyCollection collection) {
-        String sql = "insert into dailyCollection(name,gender,address,Amount,collectionDate,m_code)values(?,?,?,?,?,?)";
+        String sql = "insert into dailyCollection(name,gender,address,Amount,collectionDate,m_code,day,month,year)values(?,?,?,?,?,?,?,?,?)";
         try {
             PreparedStatement ps = conn.prepareStatement(sql);
             ps.setString(1, collection.getName());
@@ -35,12 +35,19 @@ public class DailyCollectionService {
             ps.setString(4, collection.getCollectionAmount());
             ps.setDate(5, new java.sql.Date(collection.getCollectionDate().getTime()));
             ps.setString(6, collection.getAddMember().getMcode());
+            ps.setInt(7, collection.getDay());
+            ps.setInt(8, collection.getMonth());
+            ps.setInt(9, collection.getYear());
+            
 
             ps.executeUpdate();
             System.out.println("Successfully Inserted into Collection");
         } catch (SQLException ex) {
             Logger.getLogger(DailyCollectionService.class.getName()).log(Level.SEVERE, null, ex);
         }
+    }
+    public static void main(String[] args) {
+        createTableDailyCollection();
     }
     
 //    public static User getUserByName(String username,String password,boolean status) {

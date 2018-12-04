@@ -11,6 +11,7 @@ import Service.AddMemberService;
 import Service.DailyCollectionService;
 import Utils.MenuForManager;
 import java.sql.ResultSet;
+import java.util.Calendar;
 import java.util.Date;
 
 /**
@@ -25,8 +26,8 @@ public class DailyColllectionView extends javax.swing.JFrame {
     public DailyColllectionView() {
         initComponents();
         MenuForManager.menuManager(this);
-        lblDailyMsg.setText(LoginView.logedIn); 
-        
+        lblDailyMsg.setText(LoginView.logedIn);
+
     }
 
     /**
@@ -249,33 +250,36 @@ public class DailyColllectionView extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnsaveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnsaveActionPerformed
-        
+
         AddMember addMember = new AddMember();
-        addMember.setMcode(txtDMcode.getText()); 
-        
-        
-        DailyCollection dailyCollection = new DailyCollection(txtname.getText(), txtgender.getText(), txtaddress.getText(),txtamount.getText(), new Date(),addMember);
+        addMember.setMcode(txtDMcode.getText());
+
+        Calendar c = Calendar.getInstance();
+        c.setTime(new Date());
+        int dayOfMonth = c.get(Calendar.DAY_OF_MONTH);
+        int monthName = c.get(Calendar.MONTH);
+        int year = c.get(Calendar.YEAR);
+                                                          //String name, String gender, String address, String collectionAmount, Date collectionDate, int day, int month, int year, AddMember addMember
+        DailyCollection dailyCollection = new DailyCollection(txtname.getText(), txtgender.getText(), txtaddress.getText(), txtamount.getText(), new Date(),  dayOfMonth,monthName,year,addMember);
         //dailyCollection.setAddMember(addMember); 
         DailyCollectionService.insertCollection(dailyCollection);
-        lbldMsg.setText("Successfully Added into Collection"); 
+        lbldMsg.setText("Successfully Added into Collection");
     }//GEN-LAST:event_btnsaveActionPerformed
 
     private void btnsearchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnsearchActionPerformed
-        
+
         try {
             ResultSet rs = AddMemberService.getDataById(Integer.parseInt(txtId.getText()));
             while (rs.next()) {
                 txtId.setText(String.valueOf(rs.getInt(1)));
-                txtDMcode.setText(rs.getString(7)); 
-                txtname.setText(rs.getString(2)); 
-                txtgender.setText(rs.getString(3)); 
-                txtaddress.setText(rs.getString(4)); 
-                
-                
-                
+                txtDMcode.setText(rs.getString(2));
+                txtname.setText(rs.getString(3));
+                txtgender.setText(rs.getString(4));
+                txtaddress.setText(rs.getString(7));
+
             }
         } catch (Exception e) {
-            
+
         }
     }//GEN-LAST:event_btnsearchActionPerformed
 
