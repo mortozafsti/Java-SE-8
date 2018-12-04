@@ -9,6 +9,8 @@ import Domain.User;
 import Service.UserService;
 import Utils.MenuForManager;
 import java.util.Date;
+import java.util.List;
+import javax.swing.table.DefaultTableModel;
 
 /**
  *
@@ -21,6 +23,7 @@ public class UserView extends javax.swing.JFrame {
      */
     public UserView() {
         initComponents();
+        displayAllUserListIntoTable();
         MenuForManager.menuManager(this);
     }
 
@@ -53,13 +56,13 @@ public class UserView extends javax.swing.JFrame {
         jLabel9 = new javax.swing.JLabel();
         txtAdmitFee = new javax.swing.JTextField();
         jLabel10 = new javax.swing.JLabel();
-        txtRDate = new javax.swing.JTextField();
         lblMsg = new javax.swing.JLabel();
         jButton1 = new javax.swing.JButton();
         rdAdmin = new javax.swing.JRadioButton();
         rdFieldAssistant = new javax.swing.JRadioButton();
+        txtRDate = new com.toedter.calendar.JDateChooser();
         jScrollPane1 = new javax.swing.JScrollPane();
-        tblDisplay = new javax.swing.JTable();
+        tblUserDisplay = new javax.swing.JTable();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -138,18 +141,18 @@ public class UserView extends javax.swing.JFrame {
                             .addComponent(jLabel10))
                         .addGap(32, 32, 32)
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(txtUsername)
+                            .addComponent(txtUsername, javax.swing.GroupLayout.DEFAULT_SIZE, 228, Short.MAX_VALUE)
                             .addComponent(txtPassword)
                             .addComponent(txtGender)
                             .addComponent(txtMobile)
                             .addComponent(txtNidNumber)
                             .addComponent(txtAddress)
                             .addComponent(txtAdmitFee)
-                            .addComponent(txtRDate, javax.swing.GroupLayout.DEFAULT_SIZE, 228, Short.MAX_VALUE)
                             .addGroup(jPanel2Layout.createSequentialGroup()
                                 .addComponent(rdAdmin)
                                 .addGap(18, 18, 18)
-                                .addComponent(rdFieldAssistant))))
+                                .addComponent(rdFieldAssistant))
+                            .addComponent(txtRDate, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                     .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                         .addComponent(jButton1)
                         .addComponent(lblMsg, javax.swing.GroupLayout.PREFERRED_SIZE, 283, javax.swing.GroupLayout.PREFERRED_SIZE)))
@@ -202,7 +205,7 @@ public class UserView extends javax.swing.JFrame {
                 .addContainerGap(47, Short.MAX_VALUE))
         );
 
-        tblDisplay.setModel(new javax.swing.table.DefaultTableModel(
+        tblUserDisplay.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
             },
@@ -210,7 +213,7 @@ public class UserView extends javax.swing.JFrame {
                 "U_Name", "Password", "U_Type", "Gender", "M_Num", "N_Num", "Address", "A_Fee", "R_Date"
             }
         ));
-        jScrollPane1.setViewportView(tblDisplay);
+        jScrollPane1.setViewportView(tblUserDisplay);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -243,18 +246,39 @@ public class UserView extends javax.swing.JFrame {
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
 
         String userType = "";
-        
+
         if (rdAdmin.isSelected() == true) {
             userType = rdAdmin.getText();
         } else {
             userType = rdFieldAssistant.getText();
         }
-        
+
         User user = new User(txtUsername.getText(), txtPassword.getText(), userType, txtGender.getText(), txtMobile.getText(), txtNidNumber.getText(), txtAddress.getText(), txtAdmitFee.getText(), new Date(), true);
         UserService.insertUser(user);
         lblMsg.setText("Successfully Added");
-        
+
     }//GEN-LAST:event_jButton1ActionPerformed
+
+    public void displayAllUserListIntoTable() {
+        DefaultTableModel model = (DefaultTableModel) tblUserDisplay.getModel();
+
+        Object[] row = new Object[10];
+        model.setRowCount(0);
+        List<User> list = UserService.getAllUserList();
+        for (int i = 0; i < list.size(); i++) {
+            row[0] = list.get(i).getUsername();
+            row[1] = list.get(i).getPassword();
+            row[2] = list.get(i).getUsertype();
+            row[3] = list.get(i).getGender();
+            row[4] = list.get(i).getMobileno();
+            row[5] = list.get(i).getNid();
+            row[6] = list.get(i).getAddress();
+            row[7] = list.get(i).getAdmitfee();
+            row[8] = list.get(i).getRegiDate();
+
+            model.addRow(row);
+        }
+    }
 
     /**
      * @param args the command line arguments
@@ -310,14 +334,14 @@ public class UserView extends javax.swing.JFrame {
     private javax.swing.JLabel lblMsg;
     private javax.swing.JRadioButton rdAdmin;
     private javax.swing.JRadioButton rdFieldAssistant;
-    private javax.swing.JTable tblDisplay;
+    private javax.swing.JTable tblUserDisplay;
     private javax.swing.JTextField txtAddress;
     private javax.swing.JTextField txtAdmitFee;
     private javax.swing.JTextField txtGender;
     private javax.swing.JTextField txtMobile;
     private javax.swing.JTextField txtNidNumber;
     private javax.swing.JTextField txtPassword;
-    private javax.swing.JTextField txtRDate;
+    private com.toedter.calendar.JDateChooser txtRDate;
     private javax.swing.JTextField txtUsername;
     // End of variables declaration//GEN-END:variables
 }

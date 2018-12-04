@@ -116,19 +116,19 @@
                           <Component id="txtname" max="32767" attributes="0"/>
                           <Component id="txtgender" max="32767" attributes="0"/>
                           <Component id="txtaddress" max="32767" attributes="0"/>
-                          <Component id="txtdate" pref="234" max="32767" attributes="0"/>
                           <Component id="txtamount" alignment="1" max="32767" attributes="0"/>
-                          <Group type="102" alignment="0" attributes="0">
+                          <Group type="102" attributes="0">
                               <Component id="txtId" min="-2" pref="120" max="-2" attributes="0"/>
                               <EmptySpace type="separate" max="-2" attributes="0"/>
                               <Component id="btnsearch" min="-2" max="-2" attributes="0"/>
                               <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
                           </Group>
+                          <Component id="txtdate" alignment="0" max="32767" attributes="0"/>
                       </Group>
                       <EmptySpace max="-2" attributes="0"/>
                   </Group>
                   <Group type="102" alignment="1" attributes="0">
-                      <EmptySpace max="32767" attributes="0"/>
+                      <EmptySpace pref="30" max="32767" attributes="0"/>
                       <Component id="lbldMsg" min="-2" pref="286" max="-2" attributes="0"/>
                       <EmptySpace min="-2" pref="18" max="-2" attributes="0"/>
                   </Group>
@@ -171,9 +171,9 @@
                           <Component id="txtamount" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace type="separate" max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="3" attributes="0">
-                          <Component id="jLabel5" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="txtdate" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="1" attributes="0">
+                          <Component id="jLabel5" min="-2" max="-2" attributes="0"/>
+                          <Component id="txtdate" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="3" attributes="0">
@@ -216,8 +216,6 @@
                 <Property name="text" type="java.lang.String" value="C_Date"/>
               </Properties>
             </Component>
-            <Component class="javax.swing.JTextField" name="txtdate">
-            </Component>
             <Component class="javax.swing.JLabel" name="lbldMsg">
             </Component>
             <Component class="javax.swing.JButton" name="btnsave">
@@ -257,6 +255,8 @@
             </Component>
             <Component class="javax.swing.JTextField" name="txtDMcode">
             </Component>
+            <Component class="com.toedter.calendar.JDateChooser" name="txtdate">
+            </Component>
           </SubComponents>
         </Container>
         <Container class="javax.swing.JPanel" name="jPanel3">
@@ -285,7 +285,7 @@
 
               <Layout class="org.netbeans.modules.form.compat2.layouts.support.JScrollPaneSupportLayout"/>
               <SubComponents>
-                <Component class="javax.swing.JTable" name="jTable1">
+                <Component class="javax.swing.JTable" name="tblDisplayDailyCollection">
                   <Properties>
                     <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.editors2.TableModelEditor">
                       <Table columnCount="6" rowCount="0">

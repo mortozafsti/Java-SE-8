@@ -119,19 +119,19 @@
                           </Group>
                           <EmptySpace min="-2" pref="32" max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                              <Component id="txtUsername" max="32767" attributes="0"/>
+                              <Component id="txtUsername" pref="228" max="32767" attributes="0"/>
                               <Component id="txtPassword" max="32767" attributes="0"/>
                               <Component id="txtGender" max="32767" attributes="0"/>
                               <Component id="txtMobile" max="32767" attributes="0"/>
                               <Component id="txtNidNumber" max="32767" attributes="0"/>
                               <Component id="txtAddress" max="32767" attributes="0"/>
                               <Component id="txtAdmitFee" max="32767" attributes="0"/>
-                              <Component id="txtRDate" pref="228" max="32767" attributes="0"/>
                               <Group type="102" attributes="0">
                                   <Component id="rdAdmin" min="-2" max="-2" attributes="0"/>
                                   <EmptySpace type="separate" max="-2" attributes="0"/>
                                   <Component id="rdFieldAssistant" min="-2" max="-2" attributes="0"/>
                               </Group>
+                              <Component id="txtRDate" alignment="0" max="32767" attributes="0"/>
                           </Group>
                       </Group>
                       <Group type="103" alignment="1" groupAlignment="0" attributes="0">
@@ -261,8 +261,6 @@
             <Property name="text" type="java.lang.String" value="Regi Date"/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JTextField" name="txtRDate">
-        </Component>
         <Component class="javax.swing.JLabel" name="lblMsg">
         </Component>
         <Component class="javax.swing.JButton" name="jButton1">
@@ -290,6 +288,8 @@
             <Property name="text" type="java.lang.String" value="Field Assistant"/>
           </Properties>
         </Component>
+        <Component class="com.toedter.calendar.JDateChooser" name="txtRDate">
+        </Component>
       </SubComponents>
     </Container>
     <Container class="javax.swing.JScrollPane" name="jScrollPane1">
@@ -299,7 +299,7 @@
 
       <Layout class="org.netbeans.modules.form.compat2.layouts.support.JScrollPaneSupportLayout"/>
       <SubComponents>
-        <Component class="javax.swing.JTable" name="tblDisplay">
+        <Component class="javax.swing.JTable" name="tblUserDisplay">
           <Properties>
             <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.editors2.TableModelEditor">
               <Table columnCount="9" rowCount="0">

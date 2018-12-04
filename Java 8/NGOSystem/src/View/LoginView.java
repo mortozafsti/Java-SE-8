@@ -126,6 +126,7 @@ public class LoginView extends javax.swing.JFrame {
                     logedIn = "Hello " + user.getUsername()+ " You are LogedIn as Admin";
                     this.setVisible(false);
                     new MainView().setVisible(true);
+                    
                 } else {
                     logedIn = "Hello " + user.getUsername()+ " You are LogedIn as Field Assistant";
                     this.setVisible(false);

@@ -1,11 +1,14 @@
 package Service;
 
 import Connection.MyConnection;
+import Domain.AddMember;
 import Domain.DailyCollection;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -45,9 +48,57 @@ public class DailyCollectionService {
             Logger.getLogger(DailyCollectionService.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
-    public static void main(String[] args) {
-        createTableDailyCollection();
+    public static List<DailyCollection> getMonthList() {
+        List<DailyCollection> list = new ArrayList<>();
+        String sql = "select * from dailycollection";
+        
+        try {
+            PreparedStatement ps = conn.prepareStatement(sql);
+        
+            ResultSet rs = ps.executeQuery();
+            while (rs.next()) {
+                DailyCollection dc = new DailyCollection();
+                dc.setMonth(rs.getInt(9)); 
+                list.add(dc);
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(DailyCollectionService.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return list;
     }
+    public static List<DailyCollection> getDailyCollectionList() {
+        
+        List<DailyCollection> list = new ArrayList<>();
+        String sql = "select * from dailycollection";
+        try {
+            PreparedStatement ps = conn.prepareStatement(sql);
+            
+            ResultSet rs = ps.executeQuery();
+            while (rs.next()) {
+                DailyCollection dc = new DailyCollection();
+                dc.setId(rs.getInt(1));
+                dc.setName(rs.getString(2));
+                dc.setGender(rs.getString(3));
+                dc.setAddress(rs.getString(4));
+                dc.setCollectionAmount(rs.getDouble(5));
+                dc.setCollectionDate(rs.getDate(6)); 
+                
+                AddMember addMember = new AddMember();
+                addMember.setMcode(rs.getString(7));
+                dc.setAddMember(addMember); 
+                
+                list.add(dc);
+                
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(DailyCollectionService.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return list; 
+    }
+    
+//    public static void main(String[] args) {
+//        createTableDailyCollection();
+//    }
     
 //    public static User getUserByName(String username,String password,boolean status) {
 //        User user = new User();

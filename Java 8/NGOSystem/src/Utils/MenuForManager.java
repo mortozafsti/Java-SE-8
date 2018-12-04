@@ -1,6 +1,7 @@
 package Utils;
 
 import View.AddMemberView;
+import View.DailyCollectionReportView;
 import View.DailyColllectionView;
 import View.LoginView;
 import View.MainView;
@@ -52,12 +53,23 @@ public class MenuForManager {
             }
         });
         JMenu report = new JMenu("Report");
-        JMenu help = new JMenu("Help");
-        JMenu signout = new JMenu("SignOut");
-        signout.addActionListener(new ActionListener() {
+        JMenuItem monthlycollection = new JMenuItem("Monthly Collection");
+        monthlycollection.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                   
+                   new DailyCollectionReportView().setVisible(true);
+                   f.setVisible(false); 
+            }
+        });
+        JMenu help = new JMenu("Help");
+        
+        JMenu signout = new JMenu("SignOut");
+        JMenuItem sout = new JMenuItem("Sign Out");
+        sout.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                   new LoginView().setVisible(true);
+                   f.setVisible(false); 
                    
             }
         });
@@ -66,6 +78,9 @@ public class MenuForManager {
         file.add(adduser);
         file.add(addmember);
         file.add(dailycollection);
+        
+        report.add(monthlycollection);
+        signout.add(sout);
 
         jMenuBar.add(file);
         jMenuBar.add(report);

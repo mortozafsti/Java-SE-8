@@ -93,4 +93,6 @@ public class DailyCollectionReportService {
 
         return clist;
     }
+
+    
 }

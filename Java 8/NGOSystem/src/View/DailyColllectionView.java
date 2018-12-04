@@ -13,6 +13,8 @@ import Utils.MenuForManager;
 import java.sql.ResultSet;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.List;
+import javax.swing.table.DefaultTableModel;
 
 /**
  *
@@ -27,6 +29,7 @@ public class DailyColllectionView extends javax.swing.JFrame {
         initComponents();
         MenuForManager.menuManager(this);
         lblDailyMsg.setText(LoginView.logedIn);
+        displayDailyCollectionIntoTable();
 
     }
 
@@ -49,7 +52,6 @@ public class DailyColllectionView extends javax.swing.JFrame {
         jLabel4 = new javax.swing.JLabel();
         txtaddress = new javax.swing.JTextField();
         jLabel5 = new javax.swing.JLabel();
-        txtdate = new javax.swing.JTextField();
         lbldMsg = new javax.swing.JLabel();
         btnsave = new javax.swing.JButton();
         btnsearch = new javax.swing.JButton();
@@ -59,9 +61,10 @@ public class DailyColllectionView extends javax.swing.JFrame {
         txtId = new javax.swing.JTextField();
         jLabel8 = new javax.swing.JLabel();
         txtDMcode = new javax.swing.JTextField();
+        txtdate = new com.toedter.calendar.JDateChooser();
         jPanel3 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        tblDisplayDailyCollection = new javax.swing.JTable();
         lblDailyMsg = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -120,16 +123,16 @@ public class DailyColllectionView extends javax.swing.JFrame {
                     .addComponent(txtname)
                     .addComponent(txtgender)
                     .addComponent(txtaddress)
-                    .addComponent(txtdate, javax.swing.GroupLayout.DEFAULT_SIZE, 234, Short.MAX_VALUE)
                     .addComponent(txtamount, javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addComponent(txtId, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
                         .addComponent(btnsearch)
-                        .addGap(0, 0, Short.MAX_VALUE)))
+                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addComponent(txtdate, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap(30, Short.MAX_VALUE)
                 .addComponent(lbldMsg, javax.swing.GroupLayout.PREFERRED_SIZE, 286, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18))
             .addGroup(jPanel2Layout.createSequentialGroup()
@@ -163,7 +166,7 @@ public class DailyColllectionView extends javax.swing.JFrame {
                     .addComponent(jLabel6)
                     .addComponent(txtamount, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(jLabel5)
                     .addComponent(txtdate, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -177,7 +180,7 @@ public class DailyColllectionView extends javax.swing.JFrame {
                 .addContainerGap())
         );
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        tblDisplayDailyCollection.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
             },
@@ -185,7 +188,7 @@ public class DailyColllectionView extends javax.swing.JFrame {
                 "M_Name", "M_Gender", "M_Address", "C_Amount", "C_Date", "M_Code"
             }
         ));
-        jScrollPane1.setViewportView(jTable1);
+        jScrollPane1.setViewportView(tblDisplayDailyCollection);
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
@@ -279,10 +282,25 @@ public class DailyColllectionView extends javax.swing.JFrame {
 
             }
         } catch (Exception e) {
-
+            
         }
     }//GEN-LAST:event_btnsearchActionPerformed
 
+    public void displayDailyCollectionIntoTable(){ 
+        DefaultTableModel model = (DefaultTableModel) tblDisplayDailyCollection.getModel();
+        model.setRowCount(0);
+        Object[] row = new Object[7];
+        List<DailyCollection> list = DailyCollectionService.getDailyCollectionList();
+        for (int i = 0; i < list.size(); i++) {
+            row[0] = list.get(i).getName();
+            row[1] = list.get(i).getGender();
+            row[2] = list.get(i).getAddress();
+            row[3] = list.get(i).getCollectionAmount();
+            row[4] = list.get(i).getCollectionDate();
+            row[5] = list.get(i).getAddMember().getMcode();
+            model.addRow(row); 
+        }
+    }
     /**
      * @param args the command line arguments
      */
@@ -333,14 +351,14 @@ public class DailyColllectionView extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable jTable1;
     private javax.swing.JLabel lblDailyMsg;
     private javax.swing.JLabel lbldMsg;
+    private javax.swing.JTable tblDisplayDailyCollection;
     private javax.swing.JTextField txtDMcode;
     private javax.swing.JTextField txtId;
     private javax.swing.JTextField txtaddress;
     private javax.swing.JTextField txtamount;
-    private javax.swing.JTextField txtdate;
+    private com.toedter.calendar.JDateChooser txtdate;
     private javax.swing.JTextField txtgender;
     private javax.swing.JTextField txtname;
     // End of variables declaration//GEN-END:variables

@@ -5,6 +5,14 @@
  */
 package View;
 
+import Domain.DailyCollection;
+import Service.DailyCollectionService;
+import Utils.DailyCollectionReportService;
+import Utils.MenuForManager;
+import java.util.List;
+import javax.swing.DefaultComboBoxModel;
+import javax.swing.table.DefaultTableModel;
+
 /**
  *
  * @author User
@@ -16,6 +24,8 @@ public class DailyCollectionReportView extends javax.swing.JFrame {
      */
     public DailyCollectionReportView() {
         initComponents();
+        comboBoxItemFromDatabase();
+        MenuForManager.menuManager(this);
     }
 
     /**
@@ -28,26 +38,29 @@ public class DailyCollectionReportView extends javax.swing.JFrame {
     private void initComponents() {
 
         jLabel1 = new javax.swing.JLabel();
-        jTextField1 = new javax.swing.JTextField();
         jScrollPane2 = new javax.swing.JScrollPane();
-        jTable2 = new javax.swing.JTable();
+        tblCollectionDisplay = new javax.swing.JTable();
+        cmbMonth = new javax.swing.JComboBox<>();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         jLabel1.setText("Member Code");
 
-        jTable2.setModel(new javax.swing.table.DefaultTableModel(
+        tblCollectionDisplay.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null, null, null}
+
             },
             new String [] {
                 "Name", "M_Code", "01-May-18", "02-May-18", "03-May-18", "04-May-18", "05-May-18", "06-May-18", "07-May-18", "08-May-18", "09-May-18", "10-May-18"
             }
         ));
-        jScrollPane2.setViewportView(jTable2);
+        jScrollPane2.setViewportView(tblCollectionDisplay);
+
+        cmbMonth.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                cmbMonthItemStateChanged(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -59,29 +72,55 @@ public class DailyCollectionReportView extends javax.swing.JFrame {
                     .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 780, Short.MAX_VALUE)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 74, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 102, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(cmbMonth, javax.swing.GroupLayout.PREFERRED_SIZE, 167, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(47, 47, 47)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addGap(51, 51, 51)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(jLabel1)
-                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                    .addComponent(cmbMonth, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(16, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    private void cmbMonthItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_cmbMonthItemStateChanged
+        
+        displayCollectionByDailyBasisIntoTable();
+        
+    }//GEN-LAST:event_cmbMonthItemStateChanged
+
     /**
      * @param args the command line arguments
      */
+    private DefaultComboBoxModel comboBoxModel = null;
+    
+    public void comboBoxItemFromDatabase(){ 
+        comboBoxModel = new DefaultComboBoxModel();
+        List<DailyCollection> dailyCollections = DailyCollectionService.getMonthList();
+        for (DailyCollection dc : dailyCollections) {
+            comboBoxModel.addElement(dc.getMonth()); 
+        }
+        cmbMonth.setModel(comboBoxModel); 
+    }
+    public void displayCollectionByDailyBasisIntoTable(){ 
+        DefaultTableModel model =  (DefaultTableModel) tblCollectionDisplay.getModel();
+        Object[] row = new Object[1];
+        String selectMonth = cmbMonth.getItemAt(cmbMonth.getSelectedIndex());
+        List<DailyCollection> list = DailyCollectionReportService.dailyCollectView();
+        for (int i = 0; i < list.size(); i++) {
+            row[0] = list.get(i).getCollectionAmount();
+            
+        }
+    }
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
@@ -115,9 +154,9 @@ public class DailyCollectionReportView extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JComboBox<String> cmbMonth;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JScrollPane jScrollPane2;
-    private javax.swing.JTable jTable2;
-    private javax.swing.JTextField jTextField1;
+    private javax.swing.JTable tblCollectionDisplay;
     // End of variables declaration//GEN-END:variables
 }

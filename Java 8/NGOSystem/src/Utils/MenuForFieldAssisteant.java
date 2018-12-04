@@ -2,6 +2,7 @@ package Utils;
 
 import View.AddMemberView;
 import View.DailyColllectionView;
+import View.LoginView;
 import View.MainView;
 import View.UserView;
 import java.awt.event.ActionEvent;
@@ -52,13 +53,25 @@ public class MenuForFieldAssisteant {
         });
         JMenu report = new JMenu("Report");
         JMenu help = new JMenu("Help");
+        
         JMenu signout = new JMenu("SignOut");
+        JMenuItem sout = new JMenuItem("Sign Out");
+        sout.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                   new LoginView().setVisible(true);
+                   f.setVisible(false); 
+                   
+            }
+        });
 
         //file.add(dashboard);
         file.add(adduser);
         file.add(addmember);
         file.add(dailycollection);
 
+        signout.add(sout);
+        
         jMenuBar.add(file);
         jMenuBar.add(report);
         jMenuBar.add(help);

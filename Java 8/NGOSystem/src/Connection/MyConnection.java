@@ -10,7 +10,7 @@ import java.util.logging.Logger;
 public class MyConnection {
 
     private static final String HOST = "jdbc:mysql://localhost:3306";
-    private static final String DBNAME = "ngosystem";
+    private static final String DBNAME = "ngosystmm";
     private static final String URL = HOST+"/"+DBNAME;
     private static Connection conn = null;
     
