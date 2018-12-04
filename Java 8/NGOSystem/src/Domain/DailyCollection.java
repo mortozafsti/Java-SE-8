@@ -9,7 +9,7 @@ public class DailyCollection {
     private String name;
     private String gender;
     private String address;
-    private String collectionAmount;
+    private double collectionAmount;
     private Date collectionDate;
     
     private int day;
@@ -21,7 +21,7 @@ public class DailyCollection {
     public DailyCollection() {
     }
 
-    public DailyCollection(String name, String gender, String address, String collectionAmount, Date collectionDate, int day, int month, int year, AddMember addMember) {
+    public DailyCollection(String name, String gender, String address, double collectionAmount, Date collectionDate, int day, int month, int year, AddMember addMember) {
         this.name = name;
         this.gender = gender;
         this.address = address;
@@ -33,7 +33,7 @@ public class DailyCollection {
         this.addMember = addMember;
     }
 
-    public DailyCollection(String name, String gender, String address,String collectionAmount, Date collectionDate) {
+    public DailyCollection(String name, String gender, String address,double collectionAmount, Date collectionDate) {
         this.name = name;
         this.gender = gender;
         this.address = address;
@@ -41,7 +41,7 @@ public class DailyCollection {
         this.collectionDate = collectionDate;
     }
 
-    public DailyCollection(int id, String name, String gender, String address,String collectionAmount, Date collectionDate, AddMember addMember) {
+    public DailyCollection(int id, String name, String gender, String address,double collectionAmount, Date collectionDate, AddMember addMember) {
         this.id = id;
         this.name = name;
         this.gender = gender;
@@ -51,7 +51,7 @@ public class DailyCollection {
         this.addMember = addMember;
     }
 
-    public DailyCollection(String name, String gender, String address,String collectionAmount, Date collectionDate, AddMember addMember) {
+    public DailyCollection(String name, String gender, String address,double collectionAmount, Date collectionDate, AddMember addMember) {
         this.name = name;
         this.gender = gender;
         this.address = address;
@@ -108,11 +108,11 @@ public class DailyCollection {
         this.addMember = addMember;
     }  
 
-    public String getCollectionAmount() {
+    public double getCollectionAmount() {
         return collectionAmount;
     }
 
-    public void setCollectionAmount(String collectionAmount) {
+    public void setCollectionAmount(double collectionAmount) {
         this.collectionAmount = collectionAmount;
     }
 

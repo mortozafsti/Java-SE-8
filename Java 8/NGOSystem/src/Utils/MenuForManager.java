@@ -2,6 +2,7 @@ package Utils;
 
 import View.AddMemberView;
 import View.DailyColllectionView;
+import View.LoginView;
 import View.MainView;
 import View.UserView;
 import java.awt.event.ActionEvent;
@@ -53,6 +54,13 @@ public class MenuForManager {
         JMenu report = new JMenu("Report");
         JMenu help = new JMenu("Help");
         JMenu signout = new JMenu("SignOut");
+        signout.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                   
+                   
+            }
+        });
 
         file.add(dashboard);
         file.add(adduser);

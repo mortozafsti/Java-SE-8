@@ -259,8 +259,8 @@ public class DailyColllectionView extends javax.swing.JFrame {
         int dayOfMonth = c.get(Calendar.DAY_OF_MONTH);
         int monthName = c.get(Calendar.MONTH);
         int year = c.get(Calendar.YEAR);
-                                                          //String name, String gender, String address, String collectionAmount, Date collectionDate, int day, int month, int year, AddMember addMember
-        DailyCollection dailyCollection = new DailyCollection(txtname.getText(), txtgender.getText(), txtaddress.getText(), txtamount.getText(), new Date(),  dayOfMonth,monthName,year,addMember);
+                                                           //String name, String gender, String address, String collectionAmount, Date collectionDate, int day, int month, int year, AddMember addMember
+        DailyCollection dailyCollection = new DailyCollection(txtname.getText(), txtgender.getText(), txtaddress.getText(), Double.parseDouble(txtamount.getText()), new Date(),  dayOfMonth,monthName,year,addMember);
         //dailyCollection.setAddMember(addMember); 
         DailyCollectionService.insertCollection(dailyCollection);
         lbldMsg.setText("Successfully Added into Collection");

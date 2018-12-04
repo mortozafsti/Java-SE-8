@@ -15,7 +15,7 @@ public class DailyCollectionService {
 
     public static void createTableDailyCollection() {
         String sql = "create table dailyCollection(id int auto_increment primary key,name varchar(30) not null,"
-                + "gender varchar(30) not null,address varchar(30) not null,Amount varchar(30) not null, collectionDate Date,"
+                + "gender varchar(30) not null,address varchar(30) not null,Amount double(30) not null, collectionDate Date,"
                 + "m_code varchar(10) not null,foreign key(m_code) references member(mcode),day int(11),month int(11),year int(11))";
         try {
             PreparedStatement ps = conn.prepareStatement(sql);
@@ -32,14 +32,13 @@ public class DailyCollectionService {
             ps.setString(1, collection.getName());
             ps.setString(2, collection.getGender());
             ps.setString(3, collection.getAddress());
-            ps.setString(4, collection.getCollectionAmount());
+            ps.setDouble(4, collection.getCollectionAmount());
             ps.setDate(5, new java.sql.Date(collection.getCollectionDate().getTime()));
             ps.setString(6, collection.getAddMember().getMcode());
             ps.setInt(7, collection.getDay());
             ps.setInt(8, collection.getMonth());
             ps.setInt(9, collection.getYear());
             
-
             ps.executeUpdate();
             System.out.println("Successfully Inserted into Collection");
         } catch (SQLException ex) {
