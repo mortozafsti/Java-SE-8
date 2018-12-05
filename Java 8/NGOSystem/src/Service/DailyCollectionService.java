@@ -48,17 +48,63 @@ public class DailyCollectionService {
             Logger.getLogger(DailyCollectionService.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
-    public static List<DailyCollection> getMonthList() {
+    public static List<DailyCollection> getDailyCollectionByMonth(int month) {
         List<DailyCollection> list = new ArrayList<>();
-        String sql = "select * from dailycollection";
+        String sql = " select * from dailycollection where month=?";
         
         try {
             PreparedStatement ps = conn.prepareStatement(sql);
+            ps.setInt(1, month); 
+    
         
             ResultSet rs = ps.executeQuery();
             while (rs.next()) {
                 DailyCollection dc = new DailyCollection();
-                dc.setMonth(rs.getInt(9)); 
+                dc.setId(rs.getInt(1)); 
+                dc.setName(rs.getString(2));
+                dc.setGender(rs.getString(3));
+                dc.setAddress(rs.getString(4));
+                dc.setCollectionAmount(rs.getDouble(5));            
+                dc.setCollectionDate(rs.getDate(6));
+                AddMember addMember=new AddMember();
+                addMember.setMcode(rs.getString(7));
+                    dc.setAddMember(addMember);
+                dc.setDay(rs.getInt(8));
+                dc.setMonth(rs.getInt(9));
+                dc.setYear(rs.getInt(10));
+                
+                list.add(dc);
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(DailyCollectionService.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return list;
+    }
+    public static List<DailyCollection> getDailyCollectionByMonthAndMCode(int month,String mcode) {
+        List<DailyCollection> list = new ArrayList<>();
+        String sql = " select * from dailycollection where month=? and m_code=?";
+        
+        try {
+            PreparedStatement ps = conn.prepareStatement(sql);
+            ps.setInt(1, month); 
+            ps.setString(2, mcode);
+        
+            ResultSet rs = ps.executeQuery();
+            while (rs.next()) {
+                DailyCollection dc = new DailyCollection();
+                dc.setId(rs.getInt(1)); 
+                dc.setName(rs.getString(2));
+                dc.setGender(rs.getString(3));
+                dc.setAddress(rs.getString(4));
+                dc.setCollectionAmount(rs.getDouble(5));            
+                dc.setCollectionDate(rs.getDate(6));
+                AddMember addMember=new AddMember();
+                addMember.setMcode(rs.getString(7));
+                    dc.setAddMember(addMember);
+                dc.setDay(rs.getInt(8));
+                dc.setMonth(rs.getInt(9));
+                dc.setYear(rs.getInt(10));
+                
                 list.add(dc);
             }
         } catch (SQLException ex) {

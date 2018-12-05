@@ -1,6 +1,7 @@
 package Utils;
 
 import View.AddMemberView;
+import View.DailyCollectionReportFormSingleView;
 import View.DailyColllectionView;
 import View.LoginView;
 import View.MainView;
@@ -51,7 +52,15 @@ public class MenuForFieldAssisteant {
                    f.setVisible(false); 
             }
         });
-        JMenu report = new JMenu("Report");
+        JMenu report = new JMenu("Report");      
+        JMenuItem singlecollection = new JMenuItem("Single Member Report");
+        singlecollection.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                   new DailyCollectionReportFormSingleView().setVisible(true);
+                   f.setVisible(false); 
+            }
+        });
         JMenu help = new JMenu("Help");
         
         JMenu signout = new JMenu("SignOut");
@@ -70,6 +79,8 @@ public class MenuForFieldAssisteant {
         file.add(addmember);
         file.add(dailycollection);
 
+        report.add(singlecollection);
+        
         signout.add(sout);
         
         jMenuBar.add(file);

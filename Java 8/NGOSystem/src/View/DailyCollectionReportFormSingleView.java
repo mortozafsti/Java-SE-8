@@ -8,6 +8,7 @@ package View;
 import Domain.DailyCollectionReport;
 import Service.DailyCollectionService;
 import Utils.DailyCollectionReportService;
+import Utils.MenuForFieldAssisteant;
 import Utils.MenuForManager;
 import java.util.List;
 import javax.swing.DefaultComboBoxModel;
@@ -17,15 +18,15 @@ import javax.swing.table.DefaultTableModel;
  *
  * @author User
  */
-public class DailyCollectionReportView extends javax.swing.JFrame {
+public class DailyCollectionReportFormSingleView extends javax.swing.JFrame {
 
     /**
      * Creates new form DailyCollectionReportView
      */
-    public DailyCollectionReportView() {
+    public DailyCollectionReportFormSingleView() {
         initComponents();
         comboBoxItemFromDatabase();
-        MenuForManager.menuManager(this);
+        MenuForFieldAssisteant.menuManager(this);
         displayCollectionByDailyBasisIntoTable();
     }
 
@@ -93,7 +94,7 @@ public class DailyCollectionReportView extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void cmbMonthItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_cmbMonthItemStateChanged
-        
+
         displayCollectionByDailyBasisIntoTable();
 
     }//GEN-LAST:event_cmbMonthItemStateChanged
@@ -102,7 +103,7 @@ public class DailyCollectionReportView extends javax.swing.JFrame {
      * @param args the command line arguments
      */
     private DefaultComboBoxModel comboBoxModel = null;
-    
+
     public void comboBoxItemFromDatabase() {
         comboBoxModel = new DefaultComboBoxModel();
         /*    List<DailyCollection> dailyCollections = DailyCollectionService.getMonthList();
@@ -111,12 +112,12 @@ public class DailyCollectionReportView extends javax.swing.JFrame {
         }
         cmbMonth.setModel(comboBoxModel); */
     }
-    
+
     public void displayCollectionByDailyBasisIntoTable() {
         DefaultTableModel model = (DefaultTableModel) tblCollectionDisplay.getModel();
         Object[] row = new Object[33];
         String selectMonth = cmbMonth.getItemAt(cmbMonth.getSelectedIndex());
-        List<DailyCollectionReport> list = DailyCollectionReportService.dailyCollectList(11);
+        List<DailyCollectionReport> list = DailyCollectionReportService.dailyCollectForSinglememberView(DailyCollectionService.getDailyCollectionByMonthAndMCode(11,"0015"));
         for (int i = 0; i < list.size(); i++) {
             row[0] = list.get(i).getName();
             row[1] = list.get(i).getCode();
@@ -153,10 +154,10 @@ public class DailyCollectionReportView extends javax.swing.JFrame {
             row[32] = list.get(i).getDayAmount31();
             
             model.addRow(row);
-            
+
         }
     }
-    
+
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
@@ -171,20 +172,21 @@ public class DailyCollectionReportView extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(DailyCollectionReportView.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(DailyCollectionReportFormSingleView.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(DailyCollectionReportView.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(DailyCollectionReportFormSingleView.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(DailyCollectionReportView.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(DailyCollectionReportFormSingleView.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(DailyCollectionReportView.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(DailyCollectionReportFormSingleView.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new DailyCollectionReportView().setVisible(true);
+                new DailyCollectionReportFormSingleView().setVisible(true);
             }
         });
     }

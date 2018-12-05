@@ -7,6 +7,7 @@ package View;
 
 import Domain.User;
 import Service.UserService;
+import javax.swing.JFrame;
 
 /**
  *
@@ -22,6 +23,7 @@ public class LoginView extends javax.swing.JFrame {
      */
     public LoginView() {
         initComponents();
+        //this.setExtendedState(JFrame); 
     }
 
     /**
@@ -114,6 +116,7 @@ public class LoginView extends javax.swing.JFrame {
         );
 
         pack();
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnSignInActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSignInActionPerformed

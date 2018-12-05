@@ -375,4 +375,9 @@ public class DailyCollectionReport {
         this.dayAmount31 = dayAmount31;
     }
 
+    @Override
+    public String toString() {
+        return "DailyCollectionReport{" + "name=" + name + ", code=" + code + ", dayAmount1=" + dayAmount1 + ", dayAmount2=" + dayAmount2 + ", dayAmount3=" + dayAmount3 + ", dayAmount4=" + dayAmount4 + ", dayAmount5=" + dayAmount5 + ", dayAmount6=" + dayAmount6 + ", dayAmount7=" + dayAmount7 + ", dayAmount8=" + dayAmount8 + ", dayAmount9=" + dayAmount9 + ", dayAmount10=" + dayAmount10 + ", dayAmount11=" + dayAmount11 + ", dayAmount12=" + dayAmount12 + ", dayAmount13=" + dayAmount13 + ", dayAmount14=" + dayAmount14 + ", dayAmount15=" + dayAmount15 + ", dayAmount16=" + dayAmount16 + ", dayAmount17=" + dayAmount17 + ", dayAmount18=" + dayAmount18 + ", dayAmount19=" + dayAmount19 + ", dayAmount20=" + dayAmount20 + ", dayAmount21=" + dayAmount21 + ", dayAmount22=" + dayAmount22 + ", dayAmount23=" + dayAmount23 + ", dayAmount24=" + dayAmount24 + ", dayAmount25=" + dayAmount25 + ", dayAmount26=" + dayAmount26 + ", dayAmount27=" + dayAmount27 + ", dayAmount28=" + dayAmount28 + ", dayAmount29=" + dayAmount29 + ", dayAmount30=" + dayAmount30 + ", dayAmount31=" + dayAmount31 + '}';
+    }
+
 }

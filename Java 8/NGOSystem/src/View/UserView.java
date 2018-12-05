@@ -60,7 +60,7 @@ public class UserView extends javax.swing.JFrame {
         jButton1 = new javax.swing.JButton();
         rdAdmin = new javax.swing.JRadioButton();
         rdFieldAssistant = new javax.swing.JRadioButton();
-        txtRDate = new com.toedter.calendar.JDateChooser();
+        txtDate = new javax.swing.JTextField();
         jScrollPane1 = new javax.swing.JScrollPane();
         tblUserDisplay = new javax.swing.JTable();
 
@@ -152,7 +152,7 @@ public class UserView extends javax.swing.JFrame {
                                 .addComponent(rdAdmin)
                                 .addGap(18, 18, 18)
                                 .addComponent(rdFieldAssistant))
-                            .addComponent(txtRDate, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                            .addComponent(txtDate)))
                     .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                         .addComponent(jButton1)
                         .addComponent(lblMsg, javax.swing.GroupLayout.PREFERRED_SIZE, 283, javax.swing.GroupLayout.PREFERRED_SIZE)))
@@ -197,8 +197,8 @@ public class UserView extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel10)
-                    .addComponent(txtRDate, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(34, 34, 34)
+                    .addComponent(txtDate, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(30, 30, 30)
                 .addComponent(lblMsg, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(jButton1)
@@ -337,11 +337,11 @@ public class UserView extends javax.swing.JFrame {
     private javax.swing.JTable tblUserDisplay;
     private javax.swing.JTextField txtAddress;
     private javax.swing.JTextField txtAdmitFee;
+    private javax.swing.JTextField txtDate;
     private javax.swing.JTextField txtGender;
     private javax.swing.JTextField txtMobile;
     private javax.swing.JTextField txtNidNumber;
     private javax.swing.JTextField txtPassword;
-    private com.toedter.calendar.JDateChooser txtRDate;
     private javax.swing.JTextField txtUsername;
     // End of variables declaration//GEN-END:variables
 }

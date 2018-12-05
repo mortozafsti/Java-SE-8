@@ -58,7 +58,7 @@ public class AddMemberView extends javax.swing.JFrame {
         btnMember = new javax.swing.JButton();
         jLabel3 = new javax.swing.JLabel();
         txtMcode = new javax.swing.JTextField();
-        txtMRDate = new com.toedter.calendar.JDateChooser();
+        txtDate = new javax.swing.JTextField();
         jScrollPane1 = new javax.swing.JScrollPane();
         tblMemberMDisplay = new javax.swing.JTable();
 
@@ -155,7 +155,7 @@ public class AddMemberView extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(txtMAdmitFee, javax.swing.GroupLayout.DEFAULT_SIZE, 228, Short.MAX_VALUE)
-                            .addComponent(txtMRDate, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                            .addComponent(txtDate))))
                 .addContainerGap())
         );
         jPanel2Layout.setVerticalGroup(
@@ -189,15 +189,15 @@ public class AddMemberView extends javax.swing.JFrame {
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel9)
                     .addComponent(txtMAdmitFee, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                .addGap(5, 5, 5)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel10)
-                    .addComponent(txtMRDate, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(txtDate, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addComponent(lblMsgMember, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(btnMember)
-                .addContainerGap(65, Short.MAX_VALUE))
+                .addContainerGap(62, Short.MAX_VALUE))
         );
 
         tblMemberMDisplay.setModel(new javax.swing.table.DefaultTableModel(
@@ -320,13 +320,13 @@ public class AddMemberView extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JLabel lblMsgMember;
     private javax.swing.JTable tblMemberMDisplay;
+    private javax.swing.JTextField txtDate;
     private javax.swing.JTextField txtMAddress;
     private javax.swing.JTextField txtMAdmitFee;
     private javax.swing.JTextField txtMGender;
     private javax.swing.JTextField txtMMobile;
     private javax.swing.JTextField txtMName;
     private javax.swing.JTextField txtMNidNumber;
-    private com.toedter.calendar.JDateChooser txtMRDate;
     private javax.swing.JTextField txtMcode;
     // End of variables declaration//GEN-END:variables
 }
