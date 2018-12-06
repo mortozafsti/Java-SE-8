@@ -250,6 +250,7 @@ public class DailyColllectionView extends javax.swing.JFrame {
         );
 
         pack();
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnsaveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnsaveActionPerformed
@@ -266,6 +267,7 @@ public class DailyColllectionView extends javax.swing.JFrame {
         DailyCollection dailyCollection = new DailyCollection(txtname.getText(), txtgender.getText(), txtaddress.getText(), Double.parseDouble(txtamount.getText()), new Date(),  dayOfMonth,monthName,year,addMember);
         //dailyCollection.setAddMember(addMember); 
         DailyCollectionService.insertCollection(dailyCollection);
+        displayDailyCollectionIntoTable();
         lbldMsg.setText("Successfully Added into Collection");
     }//GEN-LAST:event_btnsaveActionPerformed
 

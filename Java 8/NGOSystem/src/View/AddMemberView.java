@@ -236,6 +236,7 @@ public class AddMemberView extends javax.swing.JFrame {
         );
 
         pack();
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnMemberActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnMemberActionPerformed
@@ -243,6 +244,7 @@ public class AddMemberView extends javax.swing.JFrame {
         
         AddMember member = new AddMember(txtMcode.getText(), txtMName.getText(), txtMGender.getText(), txtMMobile.getText(), txtMNidNumber.getText(), txtMAddress.getText(), txtMAdmitFee.getText(), new Date());
         AddMemberService.insertMember(member); 
+        displayAllMemberIntoTable();
         lblMsgMember.setText("Successfully Added Into Member");
         
     }//GEN-LAST:event_btnMemberActionPerformed
