@@ -256,6 +256,7 @@ public class UserView extends javax.swing.JFrame {
 
         User user = new User(txtUsername.getText(), txtPassword.getText(), userType, txtGender.getText(), txtMobile.getText(), txtNidNumber.getText(), txtAddress.getText(), txtAdmitFee.getText(), new Date(), true);
         UserService.insertUser(user);
+        displayAllUserListIntoTable();
         lblMsg.setText("Successfully Added");
 
     }//GEN-LAST:event_jButton1ActionPerformed
