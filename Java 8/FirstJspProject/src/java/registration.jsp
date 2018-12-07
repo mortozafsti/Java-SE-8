@@ -1,6 +1,6 @@
 <%-- 
-    Document   : home
-    Created on : Dec 7, 2018, 10:31:10 AM
+    Document   : registration
+    Created on : Dec 7, 2018, 11:08:40 AM
     Author     : User
 --%>
 
@@ -9,9 +9,9 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>Home Page</title>
+        <title>Registration Page</title>
     </head>
     <body>
-        <h1>This is Home Page</h1>
+        <h1>This is Registration Page</h1>
     </body>
 </html>
